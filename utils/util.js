@@ -14,6 +14,12 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const checkPhone = phone => {
+  const reg = /^((1[3-8][0-9])+\d{8})$/
+  return reg.test(phone)
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  checkPhone
 }

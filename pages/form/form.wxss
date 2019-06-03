@@ -1,0 +1,28 @@
+/* pages/form/form.wxss */
+.form-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+.form-input {
+  border: 1rpx solid red;
+  border-radius: 6rpx;
+  width: 400rpx;
+  margin-left: 20rpx;
+}
+.area-value {
+  margin-left: 160rpx;
+}
+.bg {
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}

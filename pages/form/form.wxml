@@ -1,0 +1,22 @@
+<!--pages/form/form.wxml-->
+<image src='{{bg}}' class='bg'></image>
+<view class='form-content'>
+  <form bindsubmit="formSubmit">
+    <view class='form-item'>
+      姓名
+      <input class='form-input' name='name'></input>
+    </view>
+    <view class='form-item'>
+      手机
+      <input class='form-input' name='phone'></input>
+    </view>
+    <view class='area'>
+      <view class="form-item form-picker">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{area}}" name='area'>
+            区域<span class="area-value">{{area[index]}}</span>
+        </picker>
+      </view>
+    </view>
+    <button form-type="submit">注册</button>
+  </form>
+</view>
