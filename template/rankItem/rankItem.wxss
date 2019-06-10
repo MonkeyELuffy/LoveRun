@@ -1,0 +1,65 @@
+.rank-item {
+  background-color: #fff;
+}
+.rank {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.left-rank, .right-rank {
+  display: flex;
+  align-items: center;
+}
+image {
+  display: block;
+}
+.rank-img {
+  width: 40rpx;
+  height: 50rpx;
+  padding-left: 18rpx;
+}
+.rank-num {
+  width: 60rpx;
+  text-align: center;
+  color: #666;
+  font-size: 26rpx;
+}
+.avatar {
+  width: 90rpx;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+.name {
+  font-size: 40rpx;
+  font-weight: 400;
+  color: #333;
+}
+.area {
+  font-size: 24rpx;
+  color: #999;
+}
+.step {
+  font-size: 50rpx;
+  font-weight: 600;
+  color: #e31918;
+  font-style:italic;
+  font-style:oblique;
+}
+.star {
+  padding: 0 20rpx 0 40rpx;
+  text-align: center;
+}
+.star-num {
+  color: #666;
+  font-size: 24rpx;
+}
+.star-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+.rank-border-bottom {
+  height: 2rpx;
+  background-color: #ddd;
+  margin: 0 20rpx;
+}

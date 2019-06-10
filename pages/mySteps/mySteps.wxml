@@ -1,0 +1,28 @@
+<!--pages/mySteps/mySteps.wxml-->
+<view class='content'>
+  <view class='total-content'>
+    <view class='user-info-footer'>
+      <view class='item'>
+        <view class='num'>{{userInfo.newSteps}}K</view>
+        <view class='key'>累计步数</view>
+      </view>
+      <view class='line'></view>
+      <view class='item'>
+        <view class='num'>{{userInfo.days}}</view>
+        <view class='key'>累计运动天数</view>
+      </view>
+    </view>
+  </view>
+    <view class='step-list'>
+      <view class='title'>我的记录</view>
+      <scroll-view class='step-list-content' scroll-y>
+        <view class='step-item' wx:for='{{myStepsList}}' wx:for-item="item" is="stepItem">
+          <view class='left'>
+            <image class='step-icon' src='{{imgUrl.record}}'></image>
+            <view class='step-date'>{{item.date}}</view>
+          </view>
+          <view class='step-num'>{{item.num}}步</view>
+        </view>
+      </scroll-view>
+    </view>
+</view>

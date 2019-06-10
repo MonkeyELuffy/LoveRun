@@ -1,0 +1,105 @@
+/* pages/mine/mine.wxss */
+.bg-view {
+  position: absolute;
+  background-color: #E41918;
+  width: 100%;
+  height: 240rpx;
+  z-index: -1;
+  top: 0;
+}
+.user-info, .medal-content, .my-step {
+  z-index: 11;
+  border-radius: 10rpx;
+  background-color: #fff;
+  margin: 20rpx 30rpx;
+  position: relative;
+}
+.user-info-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.user-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 40rpx;
+}
+.user-info-head, .user-info-footer, .my-step {
+  display: flex;
+}
+.user-info-head {
+  align-items: center;
+}
+.name {
+  color: #333;
+  font-size: 40rpx;
+}
+.area {
+  color: #999;
+  font-size: 24rpx;
+}
+.user-info-footer {
+  justify-content: space-around;
+  align-items: center;
+  padding: 10rpx 40rpx 40rpx 40rpx;
+}
+.item {
+  text-align: center;
+}
+.num {
+  font-size: 40rpx;
+  font-weight: 700;
+  font-style:italic;
+  font-style:oblique;
+  color: #333;
+}
+.key {
+  font-size: 20rpx;
+  color: #666;
+}
+.line {
+  width: 2rpx;
+  height: 60rpx;
+  background-color: #E5E5E5;
+}
+
+.medal-content {
+  padding: 30rpx;
+}
+.title {
+  font-size: 32rpx;
+  color: #333;
+}
+.medal-list-content {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20rpx;
+}
+.medal-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.medal-item {
+  margin: 10rpx;
+}
+.medal-img {
+  width: 134rpx;
+  height: 134rpx;
+}
+.medal-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.my-step {
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  margin: 20rpx 30rpx 0 30rpx;
+}
+.more {
+  color: #333;
+}

@@ -1,0 +1,47 @@
+<!--pages/mine/mine.wxml-->
+<view class='content'>
+  <view class='bg-view'></view>
+  <view class='user-info'>
+    <image class='user-info-bg' src='{{imgUrl.userbg}}'></image>
+    <view class='user-info-head'>
+      <image src='{{userInfo.avatar}}' class='user-avatar'></image>
+      <view class='user-name'>
+        <view class='name'>{{userInfo.name}}</view>
+        <view class='area'>{{userInfo.area}}</view>
+      </view>
+    </view>
+    <view class='user-info-footer'>
+      <view class='item'>
+        <view class='num'>{{userInfo.stars}}</view>
+        <view class='key'>获得点赞</view>
+      </view>
+      <view class='line'></view>
+      <view class='item'>
+        <view class='num'>{{userInfo.newSteps}}K</view>
+        <view class='key'>累计步数</view>
+      </view>
+      <view class='line'></view>
+      <view class='item'>
+        <view class='num'>{{userInfo.days}}</view>
+        <view class='key'>累计运动天数</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='medal-content'>
+    <view class='title'>我的勋章</view>
+    <view class='medal-list-content'>
+      <view class='medal-list'>
+        <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" >
+          <image class='medal-img'src='{{item.url}}'></image>
+          <view class='medal-name'>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='my-step'>
+    <view class='title'>我的步数</view>
+    <view class='more'>></view>
+  </view>
+</view>

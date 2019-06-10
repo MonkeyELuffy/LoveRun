@@ -1,14 +1,37 @@
 {
   "pages": [
     "pages/form/form",
-    "pages/map/index"
+    "pages/map/index",
+    "pages/rank/rank",
+    "pages/mySteps/mySteps",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "backgroundColor": "#eee",
-    "navigationBarBackgroundColor": "#eee",
+    "backgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#E41918",
     "navigationBarTitleText": "ECharts 图表示例",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/map/index",
+      "text": "首页",
+      "iconPath": "img/icon_home.png",
+      "selectedIconPath": "img/icon_home@2x.png"
+    },
+    {
+      "pagePath": "pages/rank/rank",
+      "text": "排行",
+      "iconPath": "img/icon_settings_d.png",
+      "selectedIconPath": "img/icon_settings_d@2x.png"
+    },
+    {
+      "pagePath": "pages/mine/mine",
+      "text": "我的", 
+      "iconPath": "img/icon_user_d@2x.png",
+      "selectedIconPath": "img/icon_user_d.png"
+    }]
+  }
 }

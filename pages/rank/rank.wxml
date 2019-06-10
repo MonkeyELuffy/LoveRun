@@ -1,0 +1,27 @@
+<!--pages/rank/rank.wxml-->
+<import src="../../template/rankItem/rankItem.wxml"/>
+<view class='content'>
+  <view class='my-rank'>
+    <view class='rank-item'>
+    <view class='rank'>
+      <view class='left-rank'>
+        <image src='{{myRank.avatar}}' class='avatar'></image>
+        <view class='name-area'>
+          <view class='name'>{{myRank.name}}</view>
+          <view class='area'>{{myRank.area}}排名第<span class='rank-num-span'>{{myRank.rankNum}}</span>名</view>
+        </view>
+      </view>
+      <view class='right-rank'>
+        <view class='step'>{{myRank.step}}</view>
+        <view class='star'>
+          <view class='star-num'>{{myRank.star}}</view>
+          <image src='{{star1}}' class='star-img'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>
+  <view class='rank-list'>
+    <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data="{{...item, rankImg, star0, star1}}"></template>
+  </view>
+</view>

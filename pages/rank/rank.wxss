@@ -1,0 +1,47 @@
+/* pages/rank/rank.wxss */
+@import '../../template/rankItem/rankItem.wxss'
+
+page {
+  background-color: #efefef;
+}
+
+.content {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+}
+.rank-list {
+  margin-top: 20rpx;
+}
+
+.my-rank .rank-item {
+  background-color: #D70F0E;
+}
+.my-rank .rank {
+  border: none;
+}
+.my-rank .name {
+  color: #fff;
+}
+.my-rank .area {
+  color: #ddd;
+}
+.my-rank .step {
+  color: #fff;
+}
+.my-rank .star {
+  color: #fff;
+}
+.my-rank .rank-num {
+  color: #ddd;
+  width: 280rpx;
+  text-align: left;
+}
+.my-rank .rank-num-span {
+  color: #fff;
+  font-size: 30rpx;
+  padding: 0 8rpx;
+}
+.my-rank .star-num {
+  color: #ddd;
+}
