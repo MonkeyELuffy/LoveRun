@@ -1,10 +1,12 @@
 import { checkPhone } from "../../utils/util.js"
-import { imgUrl } from "../../asset/imgUrl.js"
+import { IMG_LIST } from "../../asset/imgList.js"
+import { AREA_LIST } from "../../asset/areaList.js"
 Page({
   data: {
-    area: ['武侯区', '金牛区', '锦江区', '双流区'],
+    AREA_LIST,
     index: 0,
-    bg: imgUrl.formBg
+    areaCode: 0,
+    IMG_LIST,
   },
   onLoad: function (options) {
 
@@ -13,23 +15,26 @@ Page({
 
   },
   bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      areaCode: AREA_LIST[e.detail.value].code,
     })
   },
   formSubmit(e) {
+    const { areaCode } = this.data
     let formData = e.detail.value
-    // if (!formData.name.trim()) {
-    //   console.log('name is wrong')
-    //   return
-    // }
-    // if (!checkPhone(formData.phone.trim())) {
-    //   console.log('phone is wrong')
-    //   return
-    // }
+    if (!formData.name.trim()) {
+      console.log('name is wrong')
+      return
+    }
+    if (!checkPhone(formData.phone.trim())) {
+      console.log('phone is wrong')
+      return
+    }
     formData.name = formData.name.trim()
     formData.phone = formData.phone.trim()
+    formData.areaCode = areaCode
     console.log('form发生了submit事件，携带数据为：', formData)
     wx.switchTab({
       url: '../map/index',

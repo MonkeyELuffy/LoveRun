@@ -1,4 +1,4 @@
-const imgUrl = {
+const IMG_LIST = {
     formBg: '../../img/pic_bg@2x.png',
     defaultAvatar: '../../img/avatar.png',
     pink1: '../../img/icon_good_p@2x.png',
@@ -14,9 +14,10 @@ const imgUrl = {
     list: '../../img/list.png',
     title: '../../img/pic_title@2x.png',
     userbg: '../../img/pic_userbg@2x.png',
-    star: '../../img/star.png',
+    star: '../../img/star.png', 
+    mapTitle: '../../img/map_title.png', 
 }
 
 module.exports = {
-    imgUrl
+    IMG_LIST
 }

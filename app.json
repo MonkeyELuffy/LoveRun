@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/form/form",
     "pages/map/index",
+    "pages/medalDetail/medalDetail",
     "pages/rank/rank",
+    "pages/form/form",
+    "pages/allowDetail/allowDetail",
     "pages/mySteps/mySteps",
     "pages/mine/mine"
   ],
@@ -10,7 +12,7 @@
     "backgroundTextStyle": "light",
     "backgroundColor": "#fff",
     "navigationBarBackgroundColor": "#E41918",
-    "navigationBarTitleText": "ECharts 图表示例",
+    "navigationBarTitleText": "建国70周年活力跑",
     "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",

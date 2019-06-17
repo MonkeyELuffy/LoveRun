@@ -1,5 +1,5 @@
 // pages/mine/mine.js
-import { imgUrl } from "../../asset/imgUrl.js"
+import { IMG_LIST } from "../../asset/imgList.js"
 import { medalList } from "../../asset/medalList.js"
 Page({
 
@@ -10,12 +10,12 @@ Page({
     userInfo: {
       name: 'Kevin',
       area: '高新区',
-      avatar: imgUrl.defaultAvatar,
+      avatar: IMG_LIST.defaultAvatar,
       stars: 334,
       steps: 2292539,
       days: 23,
     },
-    imgUrl,
+    IMG_LIST,
     myMedalList: []
   },
 
@@ -42,6 +42,16 @@ Page({
       myMedalList.push(medalList[7])
     }
     return myMedalList
+  },
+  clickMyStep() {
+    wx.navigateTo({
+      url: '../mySteps/mySteps',
+    })
+  },
+  goMedalDetail() {
+    wx.navigateTo({
+      url: '../medalDetail/medalDetail',
+    })
   },
 
   /**

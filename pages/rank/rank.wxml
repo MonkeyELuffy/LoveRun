@@ -22,6 +22,8 @@
   </view>
   </view>
   <view class='rank-list'>
-    <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data="{{...item, rankImg, star0, star1}}"></template>
+    <scroll-view class='rank-list-content' scroll-y bindscrolltolower="loadMoreRank" bindscrolltoupper="reloadRank">
+      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data="{{...item, rankImg, star0, star1}}"></template>
+    </scroll-view>
   </view>
 </view>

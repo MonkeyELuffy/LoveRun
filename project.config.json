@@ -1,11 +1,13 @@
 {
-	"description": "ECharts 图表示例",
+	"description": "建国70周年活力跑",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": false,
 		"minified": false,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
@@ -35,7 +37,7 @@
 				{
 					"id": 0,
 					"name": "mine",
-					"pathName": "pages/mySteps/mySteps",
+					"pathName": "pages/form/form",
 					"query": "",
 					"scene": null
 				}

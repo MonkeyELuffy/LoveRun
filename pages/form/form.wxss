@@ -2,20 +2,38 @@
 .form-content {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   height: 100vh;
+}
+form {
+  margin-top: 600rpx;
 }
 .form-item {
   display: flex;
   align-items: center;
-  margin-bottom: 60rpx;
+  margin-bottom: 30rpx;
+  background-color: #FEF4F4;
+  padding: 16rpx 30rpx;
+  font-size: 28rpx;
+  border-radius: 6rpx;
+  position: relative;
+}
+.icon {
+  width: 40rpx;
+  height: 40rpx;
 }
 .form-input {
-  border: 1rpx solid red;
   border-radius: 6rpx;
-  width: 400rpx;
+  width: 460rpx;
   margin-left: 20rpx;
+  color: #E41918;
+}
+.form-picker {
+  width: 80%;
+  margin-left: 60rpx;
+  opacity: 0;
+  position: absolute;
+  z-index: 100;
 }
 .area-value {
   margin-left: 160rpx;
@@ -25,4 +43,18 @@
   z-index: -1;
   width: 100vw;
   height: 100vh;
+}
+picker {
+  opacity: 0;
+}
+.hover-class {
+  background-color: #E41918;
+  opacity: 0.8;
+}
+button {
+  background-color: #E41918;
+  color: #fff;
+  word-spacing: 20rpx;
+  border-radius: 100rpx;
+  width: 500rpx;
 }

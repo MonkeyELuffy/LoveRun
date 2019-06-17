@@ -1,27 +1,27 @@
 // pages/rank/rank.js
-import { imgUrl } from "../../asset/imgUrl.js"
+import { IMG_LIST } from "../../asset/imgList.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    rankImg: [imgUrl.num1, imgUrl.num2, imgUrl.num3],
+    rankImg: [IMG_LIST.num1, IMG_LIST.num2, IMG_LIST.num3],
     myRank: {
       rankNum: 21,
-      avatar: imgUrl.defaultAvatar,
+      avatar: IMG_LIST.defaultAvatar,
       step: 11234,
       star: 12,
       area: '武侯区',
       name: 'Kevin',
       isUser: true,
     },
-    star0: imgUrl.pink0,
-    star1: imgUrl.pink1,
+    star0: IMG_LIST.pink0,
+    star1: IMG_LIST.pink1,
     rankList: [
       {
         rankNum: 1,
-        avatar: imgUrl.defaultAvatar,
+        avatar: IMG_LIST.defaultAvatar,
         step: 31234,
         star: 12,
         area: '武侯区',
@@ -30,7 +30,7 @@ Page({
       },
       {
         rankNum: 2,
-        avatar: imgUrl.defaultAvatar,
+        avatar: IMG_LIST.defaultAvatar,
         step: 21234,
         star: 12,
         area: '武侯区',
@@ -39,7 +39,7 @@ Page({
       },
       {
         rankNum: 3,
-        avatar: imgUrl.defaultAvatar,
+        avatar: IMG_LIST.defaultAvatar,
         step: 11234,
         star: 12,
         area: '武侯区',
@@ -48,13 +48,76 @@ Page({
       },
       {
         rankNum: 4,
-        avatar: imgUrl.defaultAvatar,
+        avatar: IMG_LIST.defaultAvatar,
         step: 110,
         star: 12,
         area: '武侯区',
         name: 'Kevin',
         userLike: false,
-      }
+      },
+      {
+        rankNum: 5,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 6,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 7,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 8,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 9,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 10,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 11,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
     ]
   },
 
@@ -64,33 +127,118 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  loadMoreRank() {
+    let { rankList } = this.data
+    this.setData({
+      rankList: [...rankList, ...rankList]
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  reloadRank() {
+    const rankList = [
+      {
+        rankNum: 1,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 31234,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: true,
+      },
+      {
+        rankNum: 2,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 21234,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: true,
+      },
+      {
+        rankNum: 3,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 11234,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 4,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 5,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 6,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 7,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 8,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 9,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 10,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+      {
+        rankNum: 11,
+        avatar: IMG_LIST.defaultAvatar,
+        step: 110,
+        star: 12,
+        area: '武侯区',
+        name: 'Kevin',
+        userLike: false,
+      },
+    ]
+    console.log('reloadRank')
+    this.setData({
+      rankList,
+    })
   },
 
   /**

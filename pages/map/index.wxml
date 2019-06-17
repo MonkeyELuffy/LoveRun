@@ -1,4 +1,30 @@
 <!--index.wxml-->
 <view class="container">
   <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
+  <view class='map-title'>
+    <image class='map-title-bg' src='{{IMG_LIST.mapTitle}}'></image>
+    <view class='title'>党员活动热力图</view>
+  </view>
+  <view class='rank-list'>
+    <view class='rank-title-content'>
+      <view class='rank-title'>区域步数排行榜</view>
+      <view class='date'>{{nowDate}}</view>
+    </view>
+    <view class='table-head'>
+      <view class='head-item'>排名</view>
+      <view class='head-item area'>区域</view>
+      <view class='head-item total-peoples'>已运动</view>
+      <view class='head-item'>合计步数</view>
+    </view>
+    <scroll-view class='step-list-content' scroll-y>
+      <view class='rank-item' wx:for='{{rankList}}' wx:for-item="item" is="rankItem">
+        <!-- <image class='rank-img' src='{{item.img}}'></image> -->
+        <view wx-if='{{item.rank > 3}}' class='rank-num'>{{item.rank}}</view>
+        <image wx-if='{{item.rank <= 3}}' class='rank-img' src='{{item.img}}'></image>
+        <view class='table-item'>{{item.area}}</view>
+        <view class='table-item'>{{item.peoples}}</view>
+        <view class='table-item total'>{{item.total}}万步</view>
+      </view>
+    </scroll-view>
+  </view>
 </view>

@@ -12,6 +12,10 @@ page {
 }
 .rank-list {
   margin-top: 20rpx;
+  height: 86vh;
+}
+.rank-list-content {
+  height: 100%;
 }
 
 .my-rank .rank-item {

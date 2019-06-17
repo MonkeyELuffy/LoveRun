@@ -1,16 +1,16 @@
 // pages/mySteps/mySteps.js
-import { imgUrl } from "../../asset/imgUrl.js"
+import { IMG_LIST } from "../../asset/imgList.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgUrl,
+    IMG_LIST,
     userInfo: {
       name: 'Kevin',
       area: '高新区',
-      avatar: imgUrl.defaultAvatar,
+      avatar: IMG_LIST.defaultAvatar,
       stars: 334,
       steps: 2292539,
       days: 23,

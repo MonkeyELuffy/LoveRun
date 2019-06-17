@@ -2,7 +2,7 @@
 <view class='content'>
   <view class='bg-view'></view>
   <view class='user-info'>
-    <image class='user-info-bg' src='{{imgUrl.userbg}}'></image>
+    <image class='user-info-bg' src='{{IMG_LIST.userbg}}'></image>
     <view class='user-info-head'>
       <image src='{{userInfo.avatar}}' class='user-avatar'></image>
       <view class='user-name'>
@@ -32,7 +32,7 @@
     <view class='title'>我的勋章</view>
     <view class='medal-list-content'>
       <view class='medal-list'>
-        <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" >
+        <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" bindtap='goMedalDetail'>
           <image class='medal-img'src='{{item.url}}'></image>
           <view class='medal-name'>{{item.name}}</view>
         </view>
@@ -40,7 +40,7 @@
     </view>
   </view>
 
-  <view class='my-step'>
+  <view class='my-step' bindtap='clickMyStep'>
     <view class='title'>我的步数</view>
     <view class='more'>></view>
   </view>
