@@ -29,6 +29,12 @@ function initChart(canvas, width, height) {
       },
       color: ['#ff271d', '#f5cecd']
     },
+    tooltip: {
+      formatter: "{b} : {c}",
+      position: p => {
+        return [p[0] - 50, p[1] - 20];
+      },
+    },
     series: [{
       scaleLimit: {
         min: 1.3,
@@ -43,13 +49,13 @@ function initChart(canvas, width, height) {
           show: true,
           textStyle: {
             color: '#af271d',
-            fontSize: 12,
+            fontSize: 14,
           }
         },
         emphasis: { //文字选中状态
           textStyle: {
             color: '#fff',
-            fontSize: 12,
+            fontSize: 14,
           }
         }
       },

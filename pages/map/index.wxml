@@ -16,15 +16,14 @@
       <view class='head-item total-peoples'>已运动</view>
       <view class='head-item'>合计步数</view>
     </view>
-    <scroll-view class='step-list-content' scroll-y>
-      <view class='rank-item' wx:for='{{rankList}}' wx:for-item="item" is="rankItem">
-        <!-- <image class='rank-img' src='{{item.img}}'></image> -->
-        <view wx-if='{{item.rank > 3}}' class='rank-num'>{{item.rank}}</view>
-        <image wx-if='{{item.rank <= 3}}' class='rank-img' src='{{item.img}}'></image>
-        <view class='table-item'>{{item.area}}</view>
-        <view class='table-item'>{{item.peoples}}</view>
-        <view class='table-item total'>{{item.total}}万步</view>
-      </view>
-    </scroll-view>
+    <cover-view class='rank-list-content-cover-view'>
+      <cover-view class='rank-item' wx:for='{{rankList}}' wx:for-item="item" is="rankItem">
+        <cover-view wx-if='{{item.rank > 3}}' class='rank-num'>{{item.rank}}</cover-view>
+        <cover-image wx-if='{{item.rank <= 3}}' class='rank-img' src='{{item.img}}'></cover-image>
+        <cover-view class='table-item'>{{item.area}}</cover-view>
+        <cover-view class='table-item'>{{item.peoples}}</cover-view>
+        <cover-view class='table-item total'>{{item.total}}万步</cover-view>
+      </cover-view>
+    </cover-view>
   </view>
 </view>
