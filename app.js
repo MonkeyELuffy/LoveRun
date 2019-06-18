@@ -1,39 +1,38 @@
-//app.js
-App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+import { urlList } from "asset/urlList.js"
+import { request } from "utils/util.js"
 
-    // 登录
+App({
+  onLaunch () {
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
+        // 利用code获取唯一标示openid
+        this.getOpenid(res.code)
       }
     })
   },
+  handleSuccess(res) {
+    if (res.data.code == 0) {
+      this.globalData.openId = res.data.result.openId
+      this.globalData.isExist = res.data.result.isExist
+      if (res.data.result.isExist) {
+        wx.switchTab({
+          url: '../map/index'
+        })
+      }
+    } else {
+      console.log('get openid失败', res.data)
+    }
+  },
+  handleFail(err) {
+    console.log('getOpenid err')
+  },
+  // 获取Openid
+  getOpenid(code) {
+    request('POST', urlList.getOpenId, { code }, this.globalData.openId, this.handleSuccess, this.handleFail)
+  },
   globalData: {
-    userInfo: null
+    userInfo: {},
+    openId: '',
+    isExist: false,
   }
 })

@@ -1,3 +1,4 @@
+import { baseUrl } from "../asset/urlList.js"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -19,7 +20,30 @@ const checkPhone = phone => {
   return reg.test(phone)
 }
 
+function request(method, url, data, openId, success, fail, complete) {
+  console.log('openId', openId)
+  wx.request({
+    url: baseUrl + url,
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      openId,
+    },
+    data,
+    method,
+    success: res => {
+      success && success(res)
+    },
+    fail: err => {
+      fail && fail()
+    },
+    complete: () => {
+      complete && complete()
+    }
+  })
+}
+
 module.exports = {
   formatTime,
-  checkPhone
+  checkPhone,
+  request,
 }

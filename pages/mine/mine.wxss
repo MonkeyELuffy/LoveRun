@@ -24,6 +24,7 @@
   width: 140rpx;
   height: 140rpx;
   margin: 40rpx;
+  border-radius: 70rpx;
 }
 .user-info-head, .user-info-footer, .my-step {
   display: flex;

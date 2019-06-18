@@ -1,43 +1,51 @@
-import { checkPhone } from "../../utils/util.js"
+import { checkPhone, request } from "../../utils/util.js"
 import { IMG_LIST } from "../../asset/imgList.js"
 import { AREA_LIST } from "../../asset/areaList.js"
+import { urlList } from "../../asset/urlList.js"
+const app = getApp()
+
 Page({
   data: {
     AREA_LIST,
     index: 0,
-    areaCode: 0,
+    areaCode: 1,
     IMG_LIST,
   },
-  onLoad: function (options) {
-
-  },
-  onShow: function () {
-
-  },
   bindPickerChange(e) {
-    
     this.setData({
       index: e.detail.value,
       areaCode: AREA_LIST[e.detail.value].code,
     })
   },
+  handleSuccess(res) {
+    if (res.data.code == 0) {
+      wx.switchTab({
+        url: '../map/index',
+      })
+    } else {
+      console.log('失败', res.data)
+    }
+  },
+  handleFail(err) {
+
+  },
   formSubmit(e) {
     const { areaCode } = this.data
     let formData = e.detail.value
-    if (!formData.name.trim()) {
-      console.log('name is wrong')
+    if (!formData.name.trim() || !checkPhone(formData.phone.trim())) {
+      this.showToast()
+      wx.showToast({
+        title: '信息不完整',
+      })
       return
     }
-    if (!checkPhone(formData.phone.trim())) {
-      console.log('phone is wrong')
-      return
+    const params = {
+      username: formData.name.trim(),
+      phone: formData.phone.trim(),
+      areaId: areaCode,
+      openId: app.globalData.openId,
+      avatarUrl: app.globalData.userInfo.avatarUrl,
     }
-    formData.name = formData.name.trim()
-    formData.phone = formData.phone.trim()
-    formData.areaCode = areaCode
-    console.log('form发生了submit事件，携带数据为：', formData)
-    wx.switchTab({
-      url: '../map/index',
-    })
+    request('POST', urlList.register, params, app.globalData.openId, this.handleSuccess, this.handleFail)
   },
 })

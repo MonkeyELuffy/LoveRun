@@ -1,27 +1,26 @@
-import * as echarts from '../../ec-canvas/echarts';
-import geoJson from './mapData.js';
+import * as echarts from '../../ec-canvas/echarts'
+import geoJson from './mapData.js'
+import { request } from "../../utils/util.js"
+import { urlList } from "../../asset/urlList.js"
 import { IMG_LIST } from "../../asset/imgList.js"
-
-const app = getApp();
+const app = getApp()
 
 function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height
-  });
-  canvas.setChart(chart);
-
-  echarts.registerMap('henan', geoJson);
-
+  })
+  canvas.setChart(chart)
+  echarts.registerMap('henan', geoJson)
   const option = {
     dataRange: {
       left: 'right',
       top: 60,
       splitList: [
-        { start: 5000000, label: '5000w以上' },
-        { start: 3000000, end: 5000000, label: '3000w到5000w' },
-        { start: 2000000, end: 3000000, label: '2000w到3000w' },
-        { end: 2000000, label: '2000w以下',},
+        { start: 5000, label: '5000w以上' },
+        { start: 3000, end: 5000, label: '3000w到5000w' },
+        { start: 2000, end: 3000, label: '2000w到3000w' },
+        { end: 2000, label: '2000w以下',},
       ], 
       textStyle: {
         color: '#af271d',
@@ -32,7 +31,7 @@ function initChart(canvas, width, height) {
     tooltip: {
       formatter: "{b} : {c}",
       position: p => {
-        return [p[0] - 50, p[1] - 20];
+        return [p[0] - 50, p[1] - 20]
       },
     },
     series: [{
@@ -48,7 +47,7 @@ function initChart(canvas, width, height) {
         normal: { //文字未选中状态
           show: true,
           textStyle: {
-            color: '#af271d',
+            color: '#b4403f',
             fontSize: 14,
           }
         },
@@ -69,44 +68,40 @@ function initChart(canvas, width, height) {
         }
       },
       data: [
-        { name: '武侯区', value: 13500 },
-        { name: '新都区', value: 4113500 },
-        { name: '高新区', value: 913500 },
-        { name: '简阳市', value: 13500 },
-        { name: '天府新区', value: 53500 },
-        { name: '双流区', value: 113500 },
-        { name: '郫都区', value: 213500 },
-        { name: '锦江区', value: 313500 },
-        { name: '青羊区', value: 413500 },
-        { name: '金牛区', value: 513500 },
-        { name: '成华区', value: 2613500 },
-        { name: '龙泉驿区', value: 713500 },
-        { name: '青白江区', value: 813500 },
-        { name: '温江区', value: 913500 },
-        { name: '金堂县', value: 4013500 },
-        { name: '大邑县', value: 1113500 },
-        { name: '新津县', value: 123500 },
-        { name: '都江堰市', value: 1313500 },
-        { name: '彭州市', value: 113500 },
-        { name: '崇州市', value: 113500 },
-        { name: '邛崃市', value: 113500 },
-        { name: '蒲江县', value: 113500 },
+        { name: '武侯区', value: 135 },
+        { name: '新都区', value: 1135 },
+        { name: '高新区', value: 9135 },
+        { name: '简阳市', value: 135 },
+        { name: '天府新区', value: 535 },
+        { name: '双流区', value: 1135 },
+        { name: '郫都区', value: 2135 },
+        { name: '锦江区', value: 3135 },
+        { name: '青羊区', value: 4135 },
+        { name: '金牛区', value: 5135 },
+        { name: '成华区', value: 26135 },
+        { name: '龙泉驿区', value: 7135 },
+        { name: '青白江区', value: 8135 },
+        { name: '温江区', value: 9135 },
+        { name: '金堂县', value: 40135 },
+        { name: '大邑县', value: 11135 },
+        { name: '新津县', value: 1235 },
+        { name: '都江堰市', value: 13135 },
+        { name: '彭州市', value: 1135 },
+        { name: '崇州市', value: 1135 },
+        { name: '邛崃市', value: 1135 },
+        { name: '蒲江县', value: 1135 },
       ]
     }],
-  };
-
-  chart.setOption(option);
-
-  return chart;
+  }
+  chart.setOption(option)
+  return chart
 }
 
 Page({
   onShareAppMessage: function (res) {
     return {
-      title: 'ECharts 可以在微信小程序中使用啦！',
-      path: '/pages/index/index',
-      success: function () { },
-      fail: function () { }
+      title: '快来参加先锋活力跑',
+      path: '/pages/map/index',
     }
   },
   data: {
@@ -167,17 +162,32 @@ Page({
     ],
     nowDate: '2019.05.20',
   },
+  handleSuccess(res) {
+    if (res.data.code == 0) {
+      wx.showToast({
+        title: '上传步数成功',
+      })
+    } else {
+      wx.showToast({
+        title: '上传步数失败',
+      })
+    }
+  },
+  handleFail(err) {
 
+  },
   onLoad() {
+    const that = this
     wx.getWeRunData({
       success(res) {
-        // 拿 encryptedData 到开发者后台解密开放数据
-        const encryptedData = res.encryptedData
-        // 或拿 cloudID 通过云调用直接获取开放数据
-        const cloudID = res.cloudID
-        console.log('encryptedData', res)
+        request('POST', urlList.stepLoad, res, app.globalData.openId, that.handleSuccess, that.handleFail)
+      },
+      fail() {
+        // 提示
+        wx.showToast({
+          title: '用户拒绝',
+        })
       }
     })
-
-  }
-});
+  },
+})

@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/map/index",
-    "pages/medalDetail/medalDetail",
-    "pages/rank/rank",
-    "pages/form/form",
     "pages/allowDetail/allowDetail",
+    "pages/form/form",
+    "pages/medalDetail/medalDetail",
+    "pages/map/index",
+    "pages/rank/rank",
     "pages/mySteps/mySteps",
     "pages/mine/mine"
   ],
