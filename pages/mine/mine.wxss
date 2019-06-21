@@ -87,8 +87,8 @@
   margin: 10rpx;
 }
 .medal-img {
-  width: 134rpx;
-  height: 134rpx;
+  width: 290rpx;
+  height: 290rpx;
 }
 .medal-name {
   font-size: 28rpx;

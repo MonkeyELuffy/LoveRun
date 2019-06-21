@@ -1,34 +1,34 @@
 const medalList = [
   {
-    url: '../../img/medal_0.png',
+    url: '../../img/medal11.png',
     name: '一级达人',
   },
   {
-    url: '../../img/medal_1.png',
+    url: '../../img/medal11.png',
     name: '二级达人',
   },
   {
-    url: '../../img/medal_2.png',
+    url: '../../img/medal11.png',
     name: '一级达人',
   },
   {
-    url: '../../img/medal_3.png',
+    url: '../../img/medal11.png',
     name: '一级达人',
   },
   {
-    url: '../../img/medal_4.png',
+    url: '../../img/medal11.png',
     name: '一级达人',
   },
   {
-    url: '../../img/medal_5.png',
+    url: '../../img/medal11.png',
     name: '一级达人',
   },
   {
-    url: '../../img/medal_6.png',
+    url: '../../img/medal11.png',
     name: '一级达人',
   },
   {
-    url: '../../img/medal_default.png',
+    url: '../../img/medal11.png',
     name: '未解锁',
   },
 ]

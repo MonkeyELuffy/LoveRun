@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/allowDetail/allowDetail",
+    "pages/map/index",
     "pages/form/form",
     "pages/medalDetail/medalDetail",
-    "pages/map/index",
     "pages/rank/rank",
     "pages/mySteps/mySteps",
     "pages/mine/mine"

@@ -1,4 +1,35 @@
 /* pages/allowDetail/allowDetail.wxss */
+.userinfo {
+  text-align: center;
+}
+.line {
+  height: 2rpx;
+  background-color: #ddd;
+  margin-bottom: 100rpx;
+}
+.icon {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 180rpx 0 80rpx 0;
+  border-radius: 70rpx;
+}
+.text {
+  font-size: 38rpx;
+  color: #333;
+  padding-bottom: 20rpx;
+}
+.msg {
+  font-size: 38rpx;
+  color: #ccc;
+  padding-bottom: 100rpx;
+}
 button {
-  
+  background-color: #51a873;
+  color: #fff;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 34rpx;
+  text-align: center;
+  border-radius: 100rpx;
 }

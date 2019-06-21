@@ -1,6 +1,10 @@
 <!--pages/allowDetail/allowDetail.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权</button>
+    <image src='{{IMG_LIST.defaultAvatar}}' class='icon'></image>
+    <view class='line'></view>
+    <view class='text'>申请获取以下权限</view>
+    <view class='msg'>获取您的公开信息（昵称、头像等）</view>
+    <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
   </view>
 </view>

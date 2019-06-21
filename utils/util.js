@@ -20,8 +20,7 @@ const checkPhone = phone => {
   return reg.test(phone)
 }
 
-function request(method, url, data, openId, success, fail, complete) {
-  console.log('openId', openId)
+const request = (method, url, data, openId, success, fail, complete) => {
   wx.request({
     url: baseUrl + url,
     header: {

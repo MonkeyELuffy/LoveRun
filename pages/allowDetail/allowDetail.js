@@ -1,10 +1,12 @@
 // pages/allowDetail/allowDetail.js
 import { urlList } from "../../asset/urlList.js"
 import { request } from "../../utils/util.js"
+import { IMG_LIST } from "../../asset/imgList.js"
 const app = getApp()
 
 Page({
   data: {
+    IMG_LIST,
   },
   getUserInfo() {
     wx.getUserInfo({ //获取用户的授权信息
@@ -20,7 +22,7 @@ Page({
             url: '../form/form',
           })
         }
-        console.log("获取头像", res)
+        console.log("获取信息", res)
       },
       fail: res => {
         console.log("调用失败")

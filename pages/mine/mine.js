@@ -27,7 +27,8 @@ Page({
     let { userInfo } = this.data
     let newSteps = (userInfo.steps / 1000).toFixed(1)
     userInfo.newSteps = newSteps
-    userInfo.avatarUrl = app.globalData.userInfo.avatarUrl
+    console.log('....')
+    userInfo.avatarUrl = app.globalData.userInfo.avatarUrl || IMG_LIST.defaultAvatar
     let myMedalList = this.getMyMedalList()
     this.setData({
       userInfo,
