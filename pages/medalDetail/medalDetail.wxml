@@ -1,6 +1,10 @@
 <!--pages/medalDetail/medalDetail.wxml-->
-<view class='medal-content'>
-  <image src='{{medalDetail.img}}' class='img'></image>
+<canvas canvas-id="shareCanvas" class='share-img' style="top: {{showShareImg ? '0rpx' : '-10000rpx'}}" bindtap='hiddenImg'></canvas>
+<view class='saveImg {{showShareImg ? "active" : ""}}' bindtap='saveImg'>保存图片</view>
+
+<view class='medal-content {{showShareImg ? "container-ban" : ""}}'>
+  <image src='{{medalDetail.img}}' class='img' bindtap='creatImg'></image>
+  <view class='share-text'>(点击勋章分享)</view>
   <view class='descreption'>
     <view wx:for='{{medalDetail.descreption}}' wx:for-index='index'  wx:for-item="item" is="descreptionItem" class="item {{index === 0 ? 'important' : ''}}">{{item}}</view>
   </view>

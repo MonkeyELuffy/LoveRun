@@ -1,13 +1,16 @@
 // pages/mySteps/mySteps.js
 import { IMG_LIST } from "../../asset/imgList.js"
-import { request } from "../../utils/util.js"
+import { request, saveShareImg, creatShareImg } from "../../utils/util.js"
 import { urlList } from "../../asset/urlList.js"
 const app = getApp()
 Page({
   data: {
     IMG_LIST,
     userInfo: {},
-    myStepsList: []
+    myStepsList: [],
+    showShareImg: false,
+    windowWidth: '',
+    windowHeight: '',
   },
   onLoad: function (options) {
     const { newSteps, days } = options
@@ -30,4 +33,23 @@ Page({
   getUserRankFail() {
 
   },
+  creatImg() {
+    const { days, newSteps } = this.data.userInfo
+    const that = this
+    const text1 = '我已经连续运动'
+    const text2 = days + '天  ' + newSteps + 'KM'
+    creatShareImg(that, text1, text2)
+  },
+  hiddenImg() {
+    this.setData({
+      showShareImg: false,
+    })
+  },
+  saveImg() {
+    this.setData({
+      showShareImg: false,
+    })
+    const { windowWidth, windowHeight } = this.data
+    saveShareImg(windowWidth, windowHeight)
+  }
 })

@@ -1,4 +1,7 @@
 <!--pages/mySteps/mySteps.wxml-->
+<canvas canvas-id="shareCanvas" class='share-img' style="top: {{showShareImg ? '0rpx' : '-10000rpx'}}" bindtap='hiddenImg'></canvas>
+<view class='saveImg {{showShareImg ? "active" : ""}}' bindtap='saveImg'>保存图片</view>
+
 <view class='content'>
   <view class='total-content'>
     <view class='user-info-footer'>
@@ -26,3 +29,5 @@
       </scroll-view>
     </view>
 </view>
+
+<view class='saveImg show-img' bindtap='creatImg'>点击分享</view>

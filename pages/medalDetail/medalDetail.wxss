@@ -5,9 +5,18 @@
   font-size: 32rpx;
   text-align: center;
 }
+.container-ban{
+  height: 100vh;
+  overflow: hidden;
+}
 .img {
   width: 600rpx;
   height: 600rpx;
+}
+.share-text {
+  font-size: 24rpx;
+  color: #999;
+  padding: 10rpx;
 }
 .descreption {
   text-align: justify;
