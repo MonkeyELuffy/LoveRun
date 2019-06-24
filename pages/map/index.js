@@ -29,6 +29,7 @@ Page({
       wx.showToast({
         title: '上传步数成功',
       })
+      this.getRankList() // 上传本人步数之后需要更新首页排行
     } else {
       wx.showToast({
         title: '上传步数失败',
