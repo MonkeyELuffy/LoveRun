@@ -28,7 +28,8 @@ image {
 .avatar {
   width: 90rpx;
   height: 90rpx;
-  padding: 0 30rpx;
+  margin: 0 30rpx;
+  border-radius: 150rpx;
 }
 .name {
   font-size: 40rpx;
@@ -39,7 +40,7 @@ image {
   font-size: 24rpx;
   color: #999;
 }
-.step {
+.steps {
   font-size: 50rpx;
   font-weight: 600;
   color: #e31918;

@@ -1,13 +1,13 @@
 <!--index.wxml-->
 <view class="container">
-  <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
+  <ec-canvas id="mychart" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
   <view class='map-title'>
     <image class='map-title-bg' src='{{IMG_LIST.mapTitle}}'></image>
     <view class='title'>党员活动热力图</view>
   </view>
   <view class='rank-list'>
     <view class='rank-title-content'>
-      <view class='rank-title'>区域步数排行榜</view>
+      <view class='rank-title' bindtap='getRankList'>区域步数排行榜</view>
       <view class='date'>{{nowDate}}</view>
     </view>
     <view class='table-head'>
@@ -18,11 +18,11 @@
     </view>
     <cover-view class='rank-list-content-cover-view'>
       <cover-view class='rank-item' wx:for='{{rankList}}' wx:for-item="item" is="rankItem">
-        <cover-view wx-if='{{item.rank > 3}}' class='rank-num'>{{item.rank}}</cover-view>
-        <cover-image wx-if='{{item.rank <= 3}}' class='rank-img' src='{{item.img}}'></cover-image>
-        <cover-view class='table-item'>{{item.area}}</cover-view>
-        <cover-view class='table-item'>{{item.peoples}}</cover-view>
-        <cover-view class='table-item total'>{{item.total}}万步</cover-view>
+        <cover-view wx-if='{{item.rank > 2}}' class='rank-num'>{{item.rank + 1}}</cover-view>
+        <cover-image wx-if='{{item.rank <= 2}}' class='rank-img' src='{{rankListImg[item.rank]}}'></cover-image>
+        <cover-view class='table-item'>{{item.name}}</cover-view>
+        <cover-view class='table-item'>{{item.people}}</cover-view>
+        <cover-view class='table-item total'>{{item.steps}}步</cover-view>
       </cover-view>
     </cover-view>
   </view>

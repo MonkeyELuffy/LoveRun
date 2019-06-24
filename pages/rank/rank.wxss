@@ -30,7 +30,7 @@ page {
 .my-rank .area {
   color: #ddd;
 }
-.my-rank .step {
+.my-rank .steps {
   color: #fff;
 }
 .my-rank .star {

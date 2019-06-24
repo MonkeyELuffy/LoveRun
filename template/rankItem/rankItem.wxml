@@ -2,8 +2,8 @@
   <view class='rank-item'>
     <view class='rank'>
       <view class='left-rank'>
-        <view wx-if='{{rankNum > 3}}' class='rank-num'>{{rankNum}}</view>
-        <image wx-if='{{rankNum <= 3}}' class='rank-img' src='{{rankImg[rankNum - 1]}}'></image>
+        <view wx-if='{{rank > 2}}' class='rank-num'>{{rank + 1}}</view>
+        <image wx-if='{{rank <= 2}}' class='rank-img' src='{{rankImg[rank]}}'></image>
         <image src='{{avatar}}' class='avatar'></image>
         <view class='name-area'>
           <view class='name'>{{name}}</view>
@@ -11,10 +11,10 @@
         </view>
       </view>
       <view class='right-rank'>
-        <view class='step'>{{step}}</view>
-        <view class='star'>
-          <view class='star-num'>{{star}}</view>
-          <image src='{{userLike ? star1 : star0}}' class='star-img'></image>
+        <view class='steps'>{{steps}}</view>
+        <view class='star' bindtap='likeStep' data-step-id='{{stepId}}' data-index='index' data-item='{{item}}'>
+          <view class='star-num'>{{likes}}</view>
+          <image src='{{isMyLike ? star1 : star0}}' class='star-img'></image>
         </view>
       </view>
     </view>

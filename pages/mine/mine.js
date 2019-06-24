@@ -1,12 +1,10 @@
 // pages/mine/mine.js
 import { IMG_LIST } from "../../asset/imgList.js"
 import { medalList } from "../../asset/medalList.js"
+import { request } from "../../utils/util.js"
+import { urlList } from "../../asset/urlList.js"
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo: {
       name: 'Kevin',
@@ -19,21 +17,17 @@ Page({
     IMG_LIST,
     myMedalList: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     let { userInfo } = this.data
     let newSteps = (userInfo.steps / 1000).toFixed(1)
     userInfo.newSteps = newSteps
-    console.log('....')
     userInfo.avatarUrl = app.globalData.userInfo.avatarUrl || IMG_LIST.defaultAvatar
     let myMedalList = this.getMyMedalList()
     this.setData({
       userInfo,
       myMedalList,
     })
+    this.getUserInfo()
   },
   getMyMedalList() {
     let { userInfo, myMedalList } = this.data
@@ -45,6 +39,15 @@ Page({
       myMedalList.push(medalList[7])
     }
     return myMedalList
+  },
+  getUserInfo() {
+    request('GET', urlList.getUserInfo, {}, app.globalData.openId, this.getUserInfoSuccess, this.getUserInfoFail)
+  },
+  getUserInfoSuccess(res) {
+    console.log('res', res.data)
+  },
+  getUserInfoFail() {
+
   },
   clickMyStep() {
     wx.navigateTo({

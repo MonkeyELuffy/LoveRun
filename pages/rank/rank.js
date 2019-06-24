@@ -1,130 +1,30 @@
 // pages/rank/rank.js
 import { IMG_LIST } from "../../asset/imgList.js"
-Page({
+import { request } from "../../utils/util.js"
+import { urlList } from "../../asset/urlList.js"
+const app = getApp()
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
     rankImg: [IMG_LIST.num1, IMG_LIST.num2, IMG_LIST.num3],
-    myRank: {
-      rankNum: 21,
-      avatar: IMG_LIST.defaultAvatar,
-      step: 11234,
-      star: 12,
-      area: '武侯区',
-      name: 'Kevin',
-      isUser: true,
-    },
     star0: IMG_LIST.pink0,
     star1: IMG_LIST.pink1,
-    rankList: [
-      {
-        rankNum: 1,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 31234,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: true,
-      },
-      {
-        rankNum: 2,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 21234,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: true,
-      },
-      {
-        rankNum: 3,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 11234,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 4,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 5,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 6,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 7,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 8,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 9,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 10,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 11,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-    ]
+    myRank: {},
+    rankList: [],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    this.reloadRank()
+    this.getUserRank()
+  },
+  getUserRank() {
+    request('GET', urlList.getUserRank, {}, app.globalData.openId, this.getUserRankSuccess, this.getUserRankFail)
+  },
+  getUserRankSuccess(res) {
+    this.setData({
+      myRank: res.data.result
+    })
+  },
+  getUserRankFail() {
 
   },
   loadMoreRank() {
@@ -134,131 +34,36 @@ Page({
     })
   },
   reloadRank() {
-    const rankList = [
-      {
-        rankNum: 1,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 31234,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: true,
-      },
-      {
-        rankNum: 2,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 21234,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: true,
-      },
-      {
-        rankNum: 3,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 11234,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 4,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 5,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 6,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 7,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 8,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 9,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 10,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-      {
-        rankNum: 11,
-        avatar: IMG_LIST.defaultAvatar,
-        step: 110,
-        star: 12,
-        area: '武侯区',
-        name: 'Kevin',
-        userLike: false,
-      },
-    ]
-    console.log('reloadRank')
+    const data = {
+      pageIndex: 1,
+      pageSize: 20,
+    }
+    request('POST', urlList.getPersonRankList, data, app.globalData.openId, this.getPersonRankSuccess, this.getPersonRankFail)
+
+  },
+  getPersonRankSuccess(res) {
+    this.setData({
+      rankList: res.data.result.data
+    })
+  },
+  getPersonRankFail() {
+
+  },
+  likeStep(e) {
+    console.log(e.currentTarget.dataset.stepId)
+    console.log(e.currentTarget.dataset.index)
+    console.log(e.currentTarget.dataset.item)
+    console.log(this.rankList)
+    if (!e.currentTarget.dataset.item.isMyLike) {
+      request('POST', urlList.likeStep, {stepId: e.currentTarget.dataset.stepId}, app.globalData.openId, this.getLikeStepSuccess)
+    }
+    let { rankList } = this.data
+    rankList[index].isMyLike = true
     this.setData({
       rankList,
     })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getLikeStepSuccess(res) {
+    console.log('getLikeStepSuccess', res)
   }
 })

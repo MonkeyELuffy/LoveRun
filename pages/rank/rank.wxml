@@ -8,13 +8,13 @@
         <image src='{{myRank.avatar}}' class='avatar'></image>
         <view class='name-area'>
           <view class='name'>{{myRank.name}}</view>
-          <view class='area'>{{myRank.area}}排名第<span class='rank-num-span'>{{myRank.rankNum}}</span>名</view>
+          <view class='area'>{{myRank.area}}排名第<span class='rank-num-span'>{{myRank.rank + 1}}</span>名</view>
         </view>
       </view>
       <view class='right-rank'>
-        <view class='step'>{{myRank.step}}</view>
+        <view class='steps'>{{myRank.steps}}</view>
         <view class='star'>
-          <view class='star-num'>{{myRank.star}}</view>
+          <view class='star-num'>{{myRank.likes}}</view>
           <image src='{{star1}}' class='star-img'></image>
         </view>
       </view>
@@ -23,7 +23,7 @@
   </view>
   <view class='rank-list'>
     <scroll-view class='rank-list-content' scroll-y bindscrolltolower="loadMoreRank" bindscrolltoupper="reloadRank">
-      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data="{{...item, rankImg, star0, star1}}"></template>
+      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data="{{...item, rankImg, star0, star1, likeStep}}"></template>
     </scroll-view>
   </view>
 </view>

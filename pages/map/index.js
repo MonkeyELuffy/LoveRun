@@ -4,98 +4,9 @@ import { request } from "../../utils/util.js"
 import { urlList } from "../../asset/urlList.js"
 import { IMG_LIST } from "../../asset/imgList.js"
 const app = getApp()
-
-function initChart(canvas, width, height) {
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  })
-  canvas.setChart(chart)
-  echarts.registerMap('henan', geoJson)
-  const option = {
-    dataRange: {
-      left: 'right',
-      top: 60,
-      splitList: [
-        { start: 5000, label: '5000w以上' },
-        { start: 3000, end: 5000, label: '3000w到5000w' },
-        { start: 2000, end: 3000, label: '2000w到3000w' },
-        { end: 2000, label: '2000w以下',},
-      ], 
-      textStyle: {
-        color: '#af271d',
-        fontSize: 12,
-      },
-      color: ['#ff271d', '#f5cecd']
-    },
-    tooltip: {
-      formatter: "{b} : {c}",
-      position: p => {
-        return [p[0] - 50, p[1] - 20]
-      },
-    },
-    series: [{
-      scaleLimit: {
-        min: 1.3,
-        max: 1.3,
-      },
-      center: [103.97, 30.62],
-      roam: false,  //地图拖动
-      type: 'map',
-      mapType: 'henan',
-      label: {
-        normal: { //文字未选中状态
-          show: true,
-          textStyle: {
-            color: '#b4403f',
-            fontSize: 14,
-          }
-        },
-        emphasis: { //文字选中状态
-          textStyle: {
-            color: '#fff',
-            fontSize: 14,
-          }
-        }
-      },
-      itemStyle: {
-        normal: { //区域未选中状态
-          borderColor: '#fff',
-          borderWidth: 2,
-        },
-        emphasis: { //区域选中状态
-          areaColor: '#a5d1db',
-        }
-      },
-      data: [
-        { name: '武侯区', value: 135 },
-        { name: '新都区', value: 1135 },
-        { name: '高新区', value: 9135 },
-        { name: '简阳市', value: 135 },
-        { name: '天府新区', value: 535 },
-        { name: '双流区', value: 1135 },
-        { name: '郫都区', value: 2135 },
-        { name: '锦江区', value: 3135 },
-        { name: '青羊区', value: 4135 },
-        { name: '金牛区', value: 5135 },
-        { name: '成华区', value: 26135 },
-        { name: '龙泉驿区', value: 7135 },
-        { name: '青白江区', value: 8135 },
-        { name: '温江区', value: 9135 },
-        { name: '金堂县', value: 40135 },
-        { name: '大邑县', value: 11135 },
-        { name: '新津县', value: 1235 },
-        { name: '都江堰市', value: 13135 },
-        { name: '彭州市', value: 1135 },
-        { name: '崇州市', value: 1135 },
-        { name: '邛崃市', value: 1135 },
-        { name: '蒲江县', value: 1135 },
-      ]
-    }],
-  }
-  chart.setOption(option)
-  return chart
-}
+let Chart = null
+let rankList = []
+let splitList = []
 
 Page({
   onShareAppMessage: function (res) {
@@ -106,61 +17,12 @@ Page({
   },
   data: {
     IMG_LIST,
+    rankListImg: [IMG_LIST.num1, IMG_LIST.num2, IMG_LIST.num3],
     ec: {
-      onInit: initChart
+      lazyLoad: true, // 延迟加载
     },
-    rankList: [
-      {
-        area: '武侯区',
-        total: 2432,
-        peoples: 1122,
-        img: IMG_LIST.num1,
-        rank: 1,
-      },
-      {
-        area: '青羊区',
-        total: 2432,
-        peoples: 1122,
-        img: IMG_LIST.num2,
-        rank: 2,
-      },
-      {
-        area: '金牛区',
-        total: 1432,
-        peoples: 1122,
-        img: IMG_LIST.num3,
-        rank: 3,
-      },
-      {
-        area: '金牛区',
-        total: 1432,
-        peoples: 1122,
-        img: IMG_LIST.num3,
-        rank: 4,
-      },
-      {
-        area: '金牛区',
-        total: 1432,
-        peoples: 1122,
-        img: IMG_LIST.num3,
-        rank: 5,
-      },
-      {
-        area: '金牛区',
-        total: 1432,
-        peoples: 1122,
-        img: IMG_LIST.num3,
-        rank: 6,
-      },
-      {
-        area: '金牛区',
-        total: 1432,
-        peoples: 1122,
-        img: IMG_LIST.num3,
-        rank: 7,
-      },
-    ],
-    nowDate: '2019.05.20',
+    rankList: [],
+    nowDate: '',
   },
   handleSuccess(res) {
     if (res.data.code == 0) {
@@ -176,18 +38,137 @@ Page({
   handleFail(err) {
 
   },
+  getRankList() {
+    // 请求首页区域步数
+    request('GET', urlList.getRankList, {}, app.globalData.openId, this.getRankListSuccess, this.getRankListFail)
+  },
   onLoad() {
+    this.echartsComponnet = this.selectComponent('#mychart');
+    this.setTodayDate()
+    this.getRankList()
+    this.stepLoad()
+  },
+  stepLoad() {
     const that = this
     wx.getWeRunData({
       success(res) {
         request('POST', urlList.stepLoad, res, app.globalData.openId, that.handleSuccess, that.handleFail)
       },
       fail() {
-        // 提示
-        wx.showToast({
-          title: '用户拒绝',
+        wx.showModal({
+          title: '获取步数失败',
+          content: '进入小程序设置，开启微信运动步数',
+          showCancel: false,
         })
       }
     })
+  },
+  setTodayDate() {
+    const nowDate = new Date()
+    const nowDateStr = nowDate.getFullYear() + '.' + (nowDate.getMonth() + 1) + '.' + nowDate.getDate()
+    this.setData({
+      nowDate: nowDateStr
+    })
+  },
+  getRankListSuccess(res) {
+    rankList = []
+    res.data.result.rankList.map(item => {
+      if (item) {
+        rankList.push({name: item.name, value: item.sum})
+      }
+    })
+    splitList = res.data.result.splitList
+    this.setData({
+      rankList: res.data.result.rankList
+    })
+    if (!Chart){
+      this.initEcharts(); //初始化图表
+    }else{
+      this.setOption(Chart); //更新数据
+    }
+  },
+  getRankListFail() {
+    wx.showModal({
+      title: '温馨提示',
+      content: '获取排名失败，请稍后重试',
+      showCancel: false,
+      success(res) {
+        if (res.confirm) {
+          this.getRankList()
+        }
+      }
+    })
+  },
+  initEcharts() {
+    this.echartsComponnet.init((canvas, width, height) => {
+      const Chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      })
+      canvas.setChart(Chart)
+      echarts.registerMap('henan', geoJson)
+      Chart.setOption(this.getOption())
+      return Chart
+    })
+  },
+  setOption() {
+    Chart.clear();  // 清除
+    Chart.setOption(this.getOption());
+  },
+  getOption() {
+    let option = {
+      dataRange: {
+        left: 'right',
+        top: 60,
+        splitList: splitList, 
+        textStyle: {
+          color: '#af271d',
+          fontSize: 12,
+        },
+        color: ['#ff271d', '#f5cecd']
+      },
+      tooltip: {
+        formatter: "{b} : {c}",
+        position: p => {
+          return [p[0] - 50, p[1] - 20]
+        },
+      },
+      series: [{
+        scaleLimit: {
+          min: 1.3,
+          max: 1.3,
+        },
+        center: [103.97, 30.62],
+        roam: false,  //地图拖动
+        type: 'map',
+        mapType: 'henan',
+        label: {
+          normal: { //文字未选中状态
+            show: true,
+            textStyle: {
+              color: '#b4403f',
+              fontSize: 14,
+            }
+          },
+          emphasis: { //文字选中状态
+            textStyle: {
+              color: '#fff',
+              fontSize: 14,
+            }
+          }
+        },
+        itemStyle: {
+          normal: { //区域未选中状态
+            borderColor: '#fff',
+            borderWidth: 2,
+          },
+          emphasis: { //区域选中状态
+            areaColor: '#a5d1db',
+          }
+        },
+        data: rankList,
+      }],
+    }
+    return option
   },
 })
