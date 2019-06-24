@@ -1,6 +1,6 @@
 // pages/rank/rank.js
 import { IMG_LIST } from "../../asset/imgList.js"
-import { request } from "../../utils/util.js"
+import { request, getAreaName } from "../../utils/util.js"
 import { urlList } from "../../asset/urlList.js"
 const app = getApp()
 
@@ -11,10 +11,13 @@ Page({
     star1: IMG_LIST.pink1,
     myRank: {},
     rankList: [],
+    pageIndex: 1,
+    pageSize: 20,
+    pageCount: 1,
   },
   onLoad: function (options) {
-    this.reloadRank()
     this.getUserRank()
+    this.loadRank()
   },
   getUserRank() {
     request('GET', urlList.getUserRank, {}, app.globalData.openId, this.getUserRankSuccess, this.getUserRankFail)
@@ -28,42 +31,51 @@ Page({
 
   },
   loadMoreRank() {
-    let { rankList } = this.data
+    let { pageIndex, pageSize, pageCount } = this.data
+    if (pageIndex === pageCount) {
+      return
+    }
+    const data = {
+      pageIndex: pageIndex+1,
+      pageSize,
+    }
+    request('POST', urlList.getPersonRankList, data, app.globalData.openId, this.getMorePersonRankSuccess)
+  },
+  getMorePersonRankSuccess(res) {
+    const { pageIndex, rankList } = this.data
     this.setData({
-      rankList: [...rankList, ...rankList]
+      rankList: [...rankList, ...res.data.result.data],
+      pageIndex: pageIndex+1,
     })
   },
-  reloadRank() {
+  loadRank() {
+    let { pageSize } = this.data
     const data = {
       pageIndex: 1,
-      pageSize: 20,
+      pageSize,
     }
     request('POST', urlList.getPersonRankList, data, app.globalData.openId, this.getPersonRankSuccess, this.getPersonRankFail)
-
   },
   getPersonRankSuccess(res) {
     this.setData({
-      rankList: res.data.result.data
+      rankList: res.data.result.data,
+      pageCount: res.data.result.pageCount,
+      pageIndex: 1,
     })
   },
   getPersonRankFail() {
 
   },
   likeStep(e) {
-    console.log(e.currentTarget.dataset.stepId)
-    console.log(e.currentTarget.dataset.index)
-    console.log(e.currentTarget.dataset.item)
-    console.log(this.rankList)
-    if (!e.currentTarget.dataset.item.isMyLike) {
+    if (!e.currentTarget.dataset.isMyLike) {
       request('POST', urlList.likeStep, {stepId: e.currentTarget.dataset.stepId}, app.globalData.openId, this.getLikeStepSuccess)
     }
+  },
+  getLikeStepSuccess(res) {
     let { rankList } = this.data
     rankList[index].isMyLike = true
     this.setData({
       rankList,
     })
-  },
-  getLikeStepSuccess(res) {
-    console.log('getLikeStepSuccess', res)
   }
 })

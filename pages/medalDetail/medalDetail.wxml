@@ -1,2 +1,7 @@
 <!--pages/medalDetail/medalDetail.wxml-->
-<view>勋章介绍页</view>
+<view class='medal-content'>
+  <image src='{{medalDetail.img}}' class='img'></image>
+  <view class='descreption'>
+    <view wx:for='{{medalDetail.descreption}}' wx:for-index='index'  wx:for-item="item" is="descreptionItem" class="item {{index === 0 ? 'important' : ''}}">{{item}}</view>
+  </view>
+</view>

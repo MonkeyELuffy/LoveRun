@@ -1,1 +1,26 @@
 /* pages/medalDetail/medalDetail.wxss */
+.medal-content {
+  padding: 30rpx;
+  color: #333;
+  font-size: 32rpx;
+  text-align: center;
+}
+.img {
+  width: 600rpx;
+  height: 600rpx;
+}
+.descreption {
+  text-align: justify;
+  line-height: 1.6;
+  text-indent: 64rpx;
+}
+.item {
+  min-height: 30rpx;
+}
+.important {
+  font-weight: 600;
+  font-size: 44rpx;
+  text-align: center;
+  text-indent: 0;
+  color: #ea5d4f;
+}

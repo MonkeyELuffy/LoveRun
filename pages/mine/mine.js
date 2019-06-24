@@ -6,57 +6,57 @@ import { urlList } from "../../asset/urlList.js"
 const app = getApp()
 Page({
   data: {
-    userInfo: {
-      name: 'Kevin',
-      area: '高新区',
-      avatar: IMG_LIST.defaultAvatar,
-      stars: 334,
-      steps: 2292539,
-      days: 23,
-    },
+    userInfo: {},
     IMG_LIST,
-    myMedalList: []
+    myMedalList: [],
   },
   onLoad: function (options) {
-    let { userInfo } = this.data
-    let newSteps = (userInfo.steps / 1000).toFixed(1)
-    userInfo.newSteps = newSteps
-    userInfo.avatarUrl = app.globalData.userInfo.avatarUrl || IMG_LIST.defaultAvatar
-    let myMedalList = this.getMyMedalList()
-    this.setData({
-      userInfo,
-      myMedalList,
-    })
     this.getUserInfo()
   },
   getMyMedalList() {
-    let { userInfo, myMedalList } = this.data
+    let { userInfo } = this.data
     let steps = parseInt((userInfo.steps / 1000).toFixed(1) / 1000)
     for (let i = 0; i < steps; i++) {
-      myMedalList.push(medalList[i])
+      medalList[i].lock = false
     }
-    for (let i = 0; i < 7 - steps; i++) {
-      myMedalList.push(medalList[7])
-    }
-    return myMedalList
+    return medalList
   },
   getUserInfo() {
     request('GET', urlList.getUserInfo, {}, app.globalData.openId, this.getUserInfoSuccess, this.getUserInfoFail)
   },
   getUserInfoSuccess(res) {
-    console.log('res', res.data)
+    let userInfo = res.data.result
+    let newSteps = (userInfo.steps / 1000).toFixed(1)
+    userInfo.newSteps = newSteps
+    let myMedalList = this.getMyMedalList()
+    this.setData({
+      userInfo,
+      myMedalList,
+    })
   },
   getUserInfoFail() {
 
   },
   clickMyStep() {
+    const { userInfo } = this.data
     wx.navigateTo({
-      url: '../mySteps/mySteps',
+      url: '../mySteps/mySteps?newSteps=' + userInfo.newSteps + '&days=' + userInfo.days,
     })
   },
-  goMedalDetail() {
+  clickRule() {
     wx.navigateTo({
-      url: '../medalDetail/medalDetail',
+      url: '../about/about',
+    })
+  }, 
+  clickPrize() {
+    wx.navigateTo({
+      url: '../prize/prize',
+    })
+  }, 
+  goMedalDetail(e) {
+    const index = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '../medalDetail/medalDetail?index=' + index,
     })
   },
 })

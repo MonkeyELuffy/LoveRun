@@ -1,0 +1,28 @@
+/* pages/prize/prize.wxss */
+.content {
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.level-content {
+  padding-bottom: 40rpx;
+}
+.level-item {
+  line-height: 1.6;
+  padding-left: 30rpx;
+}
+.title {
+  font-weight: 600;
+  padding-bottom: 10rpx;
+}
+.text {
+  line-height: 1.6;
+}
+.text-1 {
+  padding: 20rpx 0;
+}
+.img {
+  width: 100%;
+  border-radius: 20rpx;
+  padding-bottom: 20rpx;
+}

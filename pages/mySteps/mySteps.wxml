@@ -21,7 +21,7 @@
             <image class='step-icon' src='{{IMG_LIST.record}}'></image>
             <view class='step-date'>{{item.date}}</view>
           </view>
-          <view class='step-num'>{{item.num}}步</view>
+          <view class='step-num'>{{item.steps}}步</view>
         </view>
       </scroll-view>
     </view>

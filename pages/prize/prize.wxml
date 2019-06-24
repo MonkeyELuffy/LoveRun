@@ -1,0 +1,18 @@
+<!--pages/prize/prize.wxml-->
+<view class='content'>
+  <view class='level-content'>
+    <view class='title'>勋章梯度：</view>
+    <view class='level-item' wx:for='{{levelList}}' wx:for-item="item" is="levelItem">
+      {{item}}
+    </view>
+  </view>
+  <view class='prize-content'>
+    <view class='title'>奖品规则：</view>
+    <view class='' wx:for='{{prizeList}}' wx:for-item="item" is="prizeItem">
+      <view class='text text-1'>{{item.text1}}</view>
+      <image src='{{item.img}}' class='img'></image>
+      <view class='text text-2'>{{item.text2}}</view>
+      <view class='text text-3'>{{item.text3}}</view>
+    </view>
+  </view>
+</view>

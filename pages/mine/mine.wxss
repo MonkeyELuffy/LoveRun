@@ -99,7 +99,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20rpx 30rpx;
-  margin: 20rpx 30rpx 0 30rpx;
+  margin: 20rpx 30rpx;
 }
 .more {
   color: #333;

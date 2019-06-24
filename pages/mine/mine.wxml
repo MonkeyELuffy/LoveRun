@@ -6,13 +6,13 @@
     <view class='user-info-head'>
       <image src='{{userInfo.avatarUrl}}' class='user-avatar'></image>
       <view class='user-name'>
-        <view class='name'>{{userInfo.name}}</view>
-        <view class='area'>{{userInfo.area}}</view>
+        <view class='name'>{{userInfo.username}}</view>
+        <view class='area'>{{userInfo.areaName}}</view>
       </view>
     </view>
     <view class='user-info-footer'>
       <view class='item'>
-        <view class='num'>{{userInfo.stars}}</view>
+        <view class='num'>{{userInfo.likes}}</view>
         <view class='key'>获得点赞</view>
       </view>
       <view class='line'></view>
@@ -28,20 +28,31 @@
     </view>
   </view>
 
-  <view class='medal-content'>
-    <view class='title'>我的勋章</view>
-    <view class='medal-list-content'>
-      <view class='medal-list'>
-        <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" bindtap='goMedalDetail'>
-          <image class='medal-img'src='{{item.url}}'></image>
-          <view class='medal-name'>{{item.name}}</view>
-        </view>
-      </view>
-    </view>
+  <view class='my-step' bindtap='clickRule'>
+    <view class='title'>活动介绍</view>
+    <view class='more'>></view>
+  </view>
+
+  <view class='my-step' bindtap='clickPrize'>
+    <view class='title'>奖品列表</view>
+    <view class='more'>></view>
   </view>
 
   <view class='my-step' bindtap='clickMyStep'>
     <view class='title'>我的步数</view>
     <view class='more'>></view>
   </view>
+
+  <view class='medal-content'>
+    <view class='title'>我的勋章</view>
+    <view class='medal-list-content'>
+      <view class='medal-list'>
+        <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" bindtap='goMedalDetail' data-index='{{index}}'>
+          <image class='medal-img'src='{{item.lock ? item.lockUrl : item.unlockUrl}}'></image>
+          <view class='medal-name'>{{item.lock ? '未解锁' : item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

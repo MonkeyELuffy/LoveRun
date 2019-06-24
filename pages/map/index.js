@@ -12,7 +12,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '快来参加先锋活力跑',
-      path: '/pages/map/index',
+      path: '/pages/allowDetail/allowDetail',
     }
   },
   data: {

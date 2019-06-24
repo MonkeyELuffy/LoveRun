@@ -1,5 +1,6 @@
 const IMG_LIST = {
   formBg: '../../img/pic_bg@2x.png',
+  aboutBg: '../../img/pic_bg.png',
   defaultAvatar: '../../img/avatar.png',
   pink1: '../../img/icon_good_p@2x.png',
   pink0: '../../img/icon_good_d@2x.png',
@@ -16,7 +17,23 @@ const IMG_LIST = {
   userbg: '../../img/pic_userbg@2x.png',
   star: '../../img/star.png',
   mapTitle: '../../img/map_title.png',
-  medal11: '../../img/medal11.png'
+  medal1: '../../img/medal11.png',
+  medalUnlock1: '../../img/medal11.png',
+  medal2: '../../img/medal11.png',
+  medalUnlock2: '../../img/medal11.png',
+  medal3: '../../img/medal11.png',
+  medalUnlock3: '../../img/medal11.png',
+  medal4: '../../img/medal11.png',
+  medalUnlock4: '../../img/medal11.png',
+  medal5: '../../img/medal11.png',
+  medalUnlock5: '../../img/medal11.png',
+  medal6: '../../img/medal11.png',
+  medalUnlock6: '../../img/medal11.png',
+  medal7: '../../img/medal11.png',
+  medalUnlock7: '../../img/medal11.png',
+  prize1: '../../img/prize1.png',
+  prize2: '../../img/prize2.png',
+  prize3: '../../img/prize3.jpeg',
 }
 
 module.exports = {

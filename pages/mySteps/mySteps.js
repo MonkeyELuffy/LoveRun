@@ -6,96 +6,25 @@ const app = getApp()
 Page({
   data: {
     IMG_LIST,
-    userInfo: {
-      name: 'Kevin',
-      area: '高新区',
-      avatar: IMG_LIST.defaultAvatar,
-      stars: 334,
-      steps: 2292539,
-      days: 23,
-    },
-    myStepsList: [
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-      {
-        num: 12344,
-        date: '2019.06.06'
-      },
-    ]
+    userInfo: {},
+    myStepsList: []
   },
   onLoad: function (options) {
+    const { newSteps, days } = options
     let { userInfo } = this.data
-    let newSteps = (userInfo.steps / 1000).toFixed(1)
     userInfo.newSteps = newSteps
+    userInfo.days = days
     this.setData({
       userInfo,
     })
+    this.getUserStepList()
   },
-  getUserRank() {
-    request('GET', urlList.getUserRank, {}, app.globalData.openId, this.getUserRankSuccess, this.getUserRankFail)
+  getUserStepList() {
+    request('GET', urlList.getUserStepList, {}, app.globalData.openId, this.getUserRankSuccess, this.getUserRankFail)
   },
   getUserRankSuccess(res) {
-    console.log(res.data)
     this.setData({
-      myStepsList: res.date.result
+      myStepsList: res.data.result.data
     })
   },
   getUserRankFail() {
