@@ -19,23 +19,24 @@
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
+    "selectedColor": "#e41918",
     "list": [{
       "pagePath": "pages/map/index",
       "text": "首页",
-      "iconPath": "img/icon_home.png",
-      "selectedIconPath": "img/icon_home@2x.png"
+      "iconPath": "img/tabbaricon_home_d.png",
+      "selectedIconPath": "img/tabbaricon_home.png"
     },
     {
       "pagePath": "pages/rank/rank",
       "text": "排行",
-      "iconPath": "img/icon_settings_d.png",
-      "selectedIconPath": "img/icon_settings_d@2x.png"
+      "iconPath": "img/tabbaricon_settings_d.png",
+      "selectedIconPath": "img/tabbaricon_settings.png"
     },
     {
       "pagePath": "pages/mine/mine",
       "text": "我的", 
-      "iconPath": "img/icon_user_d@2x.png",
-      "selectedIconPath": "img/icon_user_d.png"
+      "iconPath": "img/tabbaricon_user_d.png",
+      "selectedIconPath": "img/tabbaricon_user.png"
     }]
   }
 }

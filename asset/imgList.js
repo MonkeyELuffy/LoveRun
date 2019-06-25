@@ -15,7 +15,6 @@ const IMG_LIST = {
   list: '../../img/list.png',
   title: '../../img/pic_title@2x.png',
   userbg: '../../img/pic_userbg@2x.png',
-  star: '../../img/star.png',
   mapTitle: '../../img/map_title.png',
   medal1: '../../img/medal1.png',
   medalLock1: '../../img/medalLock1.png',
