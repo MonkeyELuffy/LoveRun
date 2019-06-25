@@ -48,7 +48,7 @@
     <view class='medal-list-content'>
       <view class='medal-list'>
         <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" bindtap='goMedalDetail' data-index='{{index}}'>
-          <image class='medal-img'src='{{item.lock ? item.lockUrl : item.unlockUrl}}'></image>
+          <image class='medal-img'src='{{item.lock ? item.lockUrl : item.url}}'></image>
           <view class='medal-name'>{{item.lock ? '未解锁' : item.name}}</view>
         </view>
       </view>
