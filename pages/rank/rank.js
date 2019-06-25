@@ -68,10 +68,10 @@ Page({
   },
   likeStep(e) {
     if (!e.currentTarget.dataset.isMyLike) {
-      request('POST', urlList.likeStep, {stepId: e.currentTarget.dataset.stepId}, app.globalData.openId, this.getLikeStepSuccess)
+      request('POST', urlList.likeStep, {stepId: e.currentTarget.dataset.stepId}, app.globalData.openId, this.getLikeStepSuccess(e.currentTarget.dataset.index))
     }
   },
-  getLikeStepSuccess(res) {
+  getLikeStepSuccess(index, res) {
     let { rankList } = this.data
     rankList[index].isMyLike = true
     this.setData({

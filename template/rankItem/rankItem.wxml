@@ -12,7 +12,7 @@
       </view>
       <view class='right-rank'>
         <view class='steps'>{{steps}}</view>
-        <view class='star' bindtap='likeStep' data-step-id='{{stepId}}' data-index='index' data-is-my-like='{{isMyLike}}'>
+        <view class='star' bindtap='likeStep' data-step-id='{{stepId}}' data-index='{{index}}' data-is-my-like='{{isMyLike}}'>
           <view class='star-num'>{{likes}}</view>
           <image src='{{isMyLike ? star1 : star0}}' class='star-img'></image>
         </view>

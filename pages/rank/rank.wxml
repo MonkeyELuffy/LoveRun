@@ -23,7 +23,7 @@
   </view>
   <view class='rank-list'>
     <scroll-view class='rank-list-content' scroll-y bindscrolltolower="loadMoreRank" bindscrolltoupper="loadRank">
-      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data="{{...item, rankImg, star0, star1, likeStep, myRank}}"></template>
+      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data-index='{{index}}' data="{{...item, rankImg, star0, star1, likeStep, myRank, index}}"></template>
     </scroll-view>
   </view>
 </view>
