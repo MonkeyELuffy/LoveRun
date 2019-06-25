@@ -6,7 +6,7 @@
   height: 100vh;
 }
 form {
-  margin-top: 600rpx;
+  margin-top: 690rpx;
 }
 .form-item {
   display: flex;
