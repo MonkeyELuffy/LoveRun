@@ -74,6 +74,7 @@ Page({
   getLikeStepSuccess(index, res) {
     let { rankList } = this.data
     rankList[index].isMyLike = true
+    rankList[index].likes += 1
     this.setData({
       rankList,
     })
