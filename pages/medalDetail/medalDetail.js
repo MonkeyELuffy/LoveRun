@@ -9,16 +9,21 @@ Page({
     windowHeight: '',
   },
   onLoad: function (options) {
-    const { index } = options
+    const { index, lock } = options
     const medalDetail = medalDetailList[index]
     wx.setNavigationBarTitle({
       title: medalDetail.title,
     })
     this.setData({
       medalDetail,
+      lock,
     })
   },
   creatImg() {
+    const { lock } = this.data
+    if (lock === 'true') {
+      return
+    }
     const that = this
     const text1 = '我已经获得'
     const text2 = that.data.medalDetail.title

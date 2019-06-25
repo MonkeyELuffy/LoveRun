@@ -16,9 +16,9 @@ Page({
   getMyMedalList() {
     let { userInfo } = this.data
     let steps = parseInt((userInfo.steps / 1000).toFixed(1) / 1000)
-    for (let i = 0; i < steps; i++) {
-      medalList[i].lock = false
-    }
+    // for (let i = 0; i < steps; i++) {
+      medalList[0].lock = false
+    // }
     return medalList
   },
   getUserInfo() {
@@ -55,8 +55,10 @@ Page({
   }, 
   goMedalDetail(e) {
     const index = e.currentTarget.dataset.index
+    const { myMedalList } = this.data
+    const lock = myMedalList[index].lock
     wx.navigateTo({
-      url: '../medalDetail/medalDetail?index=' + index,
+      url: '../medalDetail/medalDetail?index=' + index + '&lock=' + lock,
     })
   },
 })
