@@ -21,6 +21,7 @@ const AREA_LIST = [
     { area: '邛崃市', code: 20 },
     { area: '崇州市', code: 21 },
     { area: '简阳市', code: 22 },
+    { area: '其他市区', code: 23 },
 ]
 module.exports = {
     AREA_LIST
