@@ -10,8 +10,7 @@ const urlList = {
   getPersonRankList: '/step/personRank', // 获取区域个人排行列表
   likeStep: '/step/likeStep', //点赞
 }
-// const baseUrl = 'https://step.wisesoft.net.cn'
-const baseUrl = 'https://step.wisesoft.net.cn'
+const baseUrl = 'https://lr.cdstwlkj.com'
 module.exports = {
   urlList,
   baseUrl,
