@@ -1,5 +1,6 @@
 <!--pages/form/form.wxml-->
 <image src='{{IMG_LIST.formBg}}' class='bg'></image>
+<span class='rules' bindtap='goRules'>活动介绍</span>
 <view class='form-content'>
   <form bindsubmit="formSubmit">
     <view class='form-item'>

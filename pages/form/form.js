@@ -17,6 +17,11 @@ Page({
       areaCode: AREA_LIST[e.detail.value].code,
     })
   },
+  goRules() {
+    wx.navigateTo({
+      url: '../about/about',
+    })
+  },
   handleSuccess(res) {
     if (res.data.code == 0) {
       wx.switchTab({
