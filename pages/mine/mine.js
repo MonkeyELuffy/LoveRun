@@ -15,10 +15,10 @@ Page({
   },
   getMyMedalList() {
     let { userInfo } = this.data
-    let steps = parseInt((userInfo.steps / 1000).toFixed(1) / 1000)
-    // for (let i = 0; i < steps; i++) {
-      medalList[0].lock = false
-    // }
+    let steps = parseInt(userInfo.steps / 100000) // 每10w步一个勋章
+    for (let i = 0; i < steps; i++) {
+      medalList[i].lock = false
+    }
     return medalList
   },
   getUserInfo() {
