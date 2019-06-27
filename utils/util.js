@@ -42,23 +42,32 @@ const request = (method, url, data, openId, success, fail, complete) => {
   })
 }
 
-const saveShareImg = (windowWidth, windowHeight) => {
+const saveShareImg = (that, windowWidth, windowHeight) => {
   wx.canvasToTempFilePath({
     x: 50,
     y: 50,
     width: windowWidth - 50 * 2,
     height: windowHeight - 90 * 2,
-    destWidth: windowWidth - 50 * 2,
-    destHeight: windowHeight - 90 * 2,
+    destWidth: (windowWidth - 50) * 2,
+    destHeight: (windowHeight - 90) * 2,
     canvasId: 'shareCanvas',
     success(res) {
       wx.saveImageToPhotosAlbum({
         filePath: res.tempFilePath,
         success(res) {
-          wx.showToast({
-            title: '图片保存成功，快去分享到朋友圈吧~',
-            icon: 'none',
-            duration: 2000
+          wx.showModal({
+            title: '保存成功',
+            content: '图片成功保存到相册了，快去分享朋友圈吧',
+            showCancel: false,
+            confirmText: '好的',
+            confirmColor: '#818FFB',
+            success(res) {
+              if (res.confirm) {
+                that.setData({
+                  showShareImg: false,
+                })
+              }
+            }
           })
         }
       })
@@ -67,8 +76,15 @@ const saveShareImg = (windowWidth, windowHeight) => {
 }
 
 const creatShareImg = (that, text1, text2) => {
+  wx.showLoading({
+    title: '分享图片生成中...',
+    icon: 'loading',
+    duration: 1000,
+    mask: true,
+  })
   wx.getSystemInfo({
     success(res) {
+      wx.hideLoading()
       const windowWidth = res.windowWidth
       const windowHeight = res.windowHeight
       const ctx = wx.createCanvasContext('shareCanvas')

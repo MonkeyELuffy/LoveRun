@@ -4,8 +4,8 @@
 
 <view class='medal-content {{showShareImg ? "container-ban" : ""}}'>
   <image src='{{medalDetail.img}}' class='img' bindtap='creatImg'></image>
-  <view class='share-text'>(点击勋章分享)</view>
+  <view class='share-text'>(获得勋章后，可点击勋章分享)</view>
   <view class='descreption'>
-    <view wx:for='{{medalDetail.descreption}}' wx:for-index='index'  wx:for-item="item" is="descreptionItem" class="item {{index === 0 ? 'important' : ''}}">{{item}}</view>
+    <view wx:for='{{medalDetail.descreption}}' wx:for-index='index'  wx:for-item="item" is="descreptionItem" class="item {{index === 0 ? 'important' : ''}} {{(index === 0 || index === 2) && lock ? 'hiddenText' : '' }}">{{item}}</view>
   </view>
 </view>

@@ -35,11 +35,9 @@ Page({
     })
   },
   saveImg() {
-    this.setData({
-      showShareImg: false,
-    })
+    const that = this
     const { windowWidth, windowHeight } = this.data
-    saveShareImg(windowWidth, windowHeight)
+    saveShareImg(that, windowWidth, windowHeight)
   }
 
 })

@@ -14,7 +14,7 @@
   height: 600rpx;
 }
 .share-text {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #999;
   padding: 10rpx;
 }
@@ -32,4 +32,7 @@
   text-align: center;
   text-indent: 0;
   color: #ea5d4f;
+}
+.hiddenText {
+  display: none;
 }
