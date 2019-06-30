@@ -22,6 +22,10 @@ Page({
     pageCount: 1,
   },
   onLoad: function (options) {
+    this.setData({
+      canLoad: true,
+      rankList: [],
+    })
     this.getUserRank()
     this.loadRank()
   },
@@ -37,15 +41,15 @@ Page({
 
   },
   loadMoreRank() {
-    let { pageIndex, pageSize, pageCount } = this.data
-    if (pageIndex === pageCount) {
+    const { pageIndex, pageSize, pageCount, canLoad } = this.data
+    if (pageIndex === pageCount || !canLoad) {
       return
     }
     const data = {
       pageIndex: pageIndex+1,
       pageSize,
     }
-    request('POST', urlList.getPersonRankList, data, app.globalData.openId, this.getMorePersonRankSuccess)
+    this.requestLoadRank(data)
   },
   getMorePersonRankSuccess(res) {
     const { pageIndex, rankList } = this.data
@@ -55,12 +59,34 @@ Page({
     })
   },
   loadRank() {
-    let { pageSize } = this.data
+    const { pageSize, canLoad } = this.data
+    if (!canLoad) {
+      return
+    }
     const data = {
       pageIndex: 1,
       pageSize,
     }
+    this.requestLoadRank(data)
+  },
+  requestLoadRank(data) {
+    const that =  this
+    that.setData({
+      canLoad: false
+    })
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 600)
     request('POST', urlList.getPersonRankList, data, app.globalData.openId, this.getPersonRankSuccess, this.getPersonRankFail)
+    // 1000ms之后才可以继续加载，防止加载请求过多
+    setTimeout(function () {
+      that.setData({
+        canLoad: true
+      })
+    }, 1000)
   },
   getPersonRankSuccess(res) {
     this.setData({
