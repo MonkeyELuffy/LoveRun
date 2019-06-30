@@ -100,8 +100,14 @@ const creatShareImg = (that, text1, text2) => {
       ctx.setTextAlign('center')
       ctx.setFillStyle('#ea5d4f')
       ctx.setFontSize(windowWidth / 20 - 4)
-      ctx.fillText('快来参加“先锋活力跑”', windowWidth / 2, windowHeight / 2 + windowWidth / 20 + 16)
-      ctx.drawImage(IMG_LIST.medal1, windowWidth / 3, windowHeight * 5 / 9, windowWidth / 3, windowWidth / 3)
+      ctx.fillText('快来扫码参加', windowWidth / 2, windowHeight / 2 + windowWidth / 20 + 16)
+      var cx = windowWidth * 3 / 8 + windowWidth / 8;
+      var cy = windowHeight * 11 / 18 + windowWidth / 8;
+      ctx.beginPath();
+      ctx.arc(cx, cy, windowWidth / 8, 0, 2 * Math.PI);
+      ctx.clip();
+
+      ctx.drawImage(IMG_LIST.wxcode, windowWidth * 3 / 8, windowHeight * 11 / 18, windowWidth / 4, windowWidth / 4)
       ctx.draw()
       that.setData({
         showShareImg: true,

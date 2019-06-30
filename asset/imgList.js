@@ -33,6 +33,7 @@ const IMG_LIST = {
   prize1: '../../img/prize1.png',
   prize2: '../../img/prize2.png',
   prize3: '../../img/prize3.jpeg',
+  wxcode: '../../img/wxcode.png',
 }
 
 module.exports = {
