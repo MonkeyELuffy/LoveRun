@@ -37,9 +37,16 @@ Page({
   formSubmit(e) {
     const { areaCode } = this.data
     let formData = e.detail.value
-    if (!formData.name.trim() || !checkPhone(formData.phone.trim())) {
+    if (!formData.name.trim()) {
       wx.showToast({
-        title: '信息不完整',
+        title: '请输入姓名',
+        icon: 'none',
+      })
+      return
+    }
+    if (!checkPhone(formData.phone.trim())) {
+      wx.showToast({
+        title: '请输入电话',
         icon: 'none',
       })
       return
