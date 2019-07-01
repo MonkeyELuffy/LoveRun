@@ -9,6 +9,13 @@
   font-weight: 600;
   text-indent: 80rpx;
 }
+.header {
+  text-align: center;
+  text-indent: 0;
+}
+.header-2 {
+  padding-bottom: 40rpx;
+}
 .rules-content {
   padding-top: 30rpx;
   text-indent: 64rpx;

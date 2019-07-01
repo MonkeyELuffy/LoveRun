@@ -1,7 +1,9 @@
 <!--pages/about/about.wxml-->
 <image src='{{IMG_LIST.aboutBg}}' class='bg'></image>
 <view class='about-content'>
-  <view class='title'>“壮丽70年•奋斗新时代”——“活力成都我见证”主题活动来啦！在隆重庆祝中华人民共和国建国70周年之际，成都正加快建设全面体现新发展理念的城市，奋力实现新时代成都三步走战略，来，我们一起参与，共同见证新时代的成都辉煌实践！</view>
+  <view class='title header'>“壮丽70年•奋斗新时代”</view>
+  <view class='title header header-2'>“活力成都我见证”主题活动来啦！</view>
+  <view class='title'>在隆重庆祝中华人民共和国建国70周年之际，成都正加快建设全面体现新发展理念的城市，奋力实现新时代成都三步走战略，来，我们一起参与，共同见证新时代的成都辉煌实践！</view>
   <view class='rules-content'>
     <view class='rules'>活动规则：</view>
     <view class='rule-item'>1. 活动参与以区(市)县为单位，参与者首次登陆需完成信息填写。</view>
