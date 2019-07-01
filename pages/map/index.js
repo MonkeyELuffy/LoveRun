@@ -1,6 +1,6 @@
 import * as echarts from '../../ec-canvas/echarts'
 import geoJson from './mapData.js'
-import { request } from "../../utils/util.js"
+import { request, setSplitList } from "../../utils/util.js"
 import { urlList } from "../../asset/urlList.js"
 import { IMG_LIST } from "../../asset/imgList.js"
 const app = getApp()
@@ -117,11 +117,12 @@ Page({
     Chart.setOption(this.getOption());
   },
   getOption() {
+    const newSplitList = setSplitList(splitList)
     let option = {
       dataRange: {
         left: 'right',
         top: 60,
-        splitList: splitList, 
+        splitList: newSplitList, 
         textStyle: {
           color: '#af271d',
           fontSize: 12,

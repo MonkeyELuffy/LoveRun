@@ -118,10 +118,32 @@ const creatShareImg = (that, text1, text2) => {
   })
 }
 
+const setSplitList = (splitList) => {
+  const minUnit = splitList[0].end
+  let labelUnit = minUnit
+  let unit = ''
+  if (minUnit.toString().length >= 6 && minUnit.toString().length<= 8) {
+    labelUnit = minUnit / 10000
+    unit = '万'
+  }
+  if (minUnit.toString().length > 8) {
+    labelUnit = minUnit / 100000000
+    unit = '亿'
+  }
+  splitList[0].label = `小于${labelUnit}${unit}`
+  splitList[1].label = `${labelUnit}${unit}到${labelUnit * 2}${unit}`
+  splitList[2].label = `${labelUnit * 2}${unit}到${labelUnit * 3}${unit}`
+  splitList[3].label = `${labelUnit * 3}${unit}到${labelUnit * 4}${unit}`
+  splitList[4].label = `大于${labelUnit * 4}${unit}`
+
+  return splitList
+}
+
 module.exports = {
   formatTime,
   checkPhone,
   request,
   saveShareImg,
   creatShareImg,
+  setSplitList,
 }
