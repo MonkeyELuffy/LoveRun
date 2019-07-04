@@ -44,7 +44,7 @@
   </view>
 
   <view class='medal-content'>
-    <view class='title'>我的勋章</view>
+    <view class='title'>我的先锋之星</view>
     <view class='medal-list-content'>
       <view class='medal-list'>
         <view class='medal-item' wx:for='{{myMedalList}}' wx:for-item="item" is="medalItem" bindtap='goMedalDetail' data-index='{{index}}'>
