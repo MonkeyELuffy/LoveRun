@@ -37,7 +37,7 @@ Page({
     const { days, newSteps } = this.data.userInfo
     const that = this
     const text1 = '我已经连续运动'
-    const text2 = days + '天  ' + newSteps + 'KM'
+    const text2 = days + '天  ' + newSteps + 'K步'
     creatShareImg(that, text1, text2)
   },
   hiddenImg() {

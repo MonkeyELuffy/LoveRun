@@ -1,7 +1,7 @@
 <!--pages/prize/prize.wxml-->
 <view class='content'>
   <view class='level-content'>
-    <view class='title'>勋章梯度：</view>
+    <view class='title'>梯规则度：</view>
     <view class='level-item' wx:for='{{levelList}}' wx:for-item="item" is="levelItem">
       {{item}}
     </view>
