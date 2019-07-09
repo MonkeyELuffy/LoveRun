@@ -2,13 +2,13 @@
 <image src='{{IMG_LIST.aboutBg}}' class='bg'></image>
 <view class='about-content'>
   <view class='title header'>“壮丽70年•奋斗新时代”</view>
-  <view class='title header header-2'>“活力成都我见证”主题活动来啦！</view>
+  <view class='title header header-2'>——“活力成都我见证”主题活动来啦！</view>
   <view class='title'>在隆重庆祝中华人民共和国建国70周年之际，成都正加快建设全面体现新发展理念的城市，奋力实现新时代成都三步走战略，来，我们一起参与，共同见证新时代的成都辉煌实践！</view>
   <view class='rules-content'>
     <view class='rules'>活动规则：</view>
     <view class='rule-item'>1. 活动参与以区(市)县为单位，参与者首次登陆需完成信息填写。</view>
     <view class='rule-item'>2. 各区(市)县参与者运动步数将形成热成像图，参与者越多、运动越积极，其所属的区(市)县成像图颜色将越深。</view>
-    <view class='rule-item'>3. 参与者在成都范围内的绿道、地标、公园跑步或健走等运动所产生的步数将形成排名（同步微信运动），每完成相应步数即可获得“壮丽70年—先锋之星”。</view>
-    <view class='rule-item'>4. “壮丽70年—先锋之星“共7枚，集齐先锋之星的参与者将有机会获取运动耳机、运动手环、手机话费等活动奖品，获奖者名单将通过“先锋成都”微信公众号公布。</view>
+    <view class='rule-item'>3. 参与者在成都范围内的绿道、公园跑步健走运动或地标打卡等所产生的步数将形成排名（同步微信运动），每完成相应步数即可获得“壮丽70年—先锋之星”。</view>
+    <view class='rule-item'>4. “壮丽70年—先锋之星”共7颗，集齐者将有机会获得运动耳机、运动手环、手机话费等活动奖品，并且每周还将从参与者中抽取幸运奖，获奖者名单将通过“先锋成都”微信公众号公布。</view>
   </view>
 </view>

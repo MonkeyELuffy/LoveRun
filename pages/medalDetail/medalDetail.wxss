@@ -33,6 +33,13 @@
   text-indent: 0;
   color: #ea5d4f;
 }
+.tips {
+  text-align: center;
+  text-indent: 0;
+  padding-bottom: 16rpx;
+  font-weight: 500;
+  font-size: 36rpx;
+}
 .hiddenText {
   display: none;
 }

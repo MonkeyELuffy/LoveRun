@@ -6,6 +6,6 @@
   <image src='{{medalDetail.img}}' class='img' bindtap='creatImg'></image>
   <view class='share-text'>(获得先锋之星后，可点击图片分享)</view>
   <view class='descreption'>
-    <view wx:for='{{medalDetail.descreption}}' wx:for-index='index'  wx:for-item="item" is="descreptionItem" class="item {{index === 0 ? 'important' : ''}} {{(index === 0 || index === 2) && lock ? 'hiddenText' : '' }}">{{item}}</view>
+    <view wx:for='{{medalDetail.descreption}}' wx:for-index='index'  wx:for-item="item" is="descreptionItem" class="item {{(index === 0 || index === 1) ? 'important' : ''}} {{(index === 0 || index === 1) && lock ? 'hiddenText' : '' }} {{index === 3 ? 'tips' : ''}}">{{item}}</view>
   </view>
 </view>

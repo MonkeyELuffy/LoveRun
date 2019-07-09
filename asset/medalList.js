@@ -13,8 +13,8 @@ const medalList = [
     lock: true,
   },
   {
-    url: IMG_LIST.medal5,
-    lockUrl: IMG_LIST.medalLock5,
+    url: IMG_LIST.medal3,
+    lockUrl: IMG_LIST.medalLock3,
     name: '乡村振兴',
     lock: true,
   },
@@ -25,8 +25,8 @@ const medalList = [
     lock: true,
   },
   {
-    url: IMG_LIST.medal3,
-    lockUrl: IMG_LIST.medalLock3,
+    url: IMG_LIST.medal5,
+    lockUrl: IMG_LIST.medalLock5,
     name: '三城三都',
     lock: true,
   },
