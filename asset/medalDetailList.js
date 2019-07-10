@@ -53,7 +53,6 @@ const medalDetailList = [
         title: '三城三都',
         descreption: [
             '您已完500000步数',
-            '',
             '恭喜获得“壮丽70年·先锋之星”！',
             '',
             '小知识',
