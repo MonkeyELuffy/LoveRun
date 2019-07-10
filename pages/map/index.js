@@ -73,6 +73,7 @@ Page({
   },
   getRankListSuccess(res) {
     rankList = []
+    const sortRankList = res.data.result.rankList.sort((a, b) => b.steps - a.steps )
     res.data.result.rankList.map(item => {
       if (item) {
         rankList.push({name: item.name, value: item.sum})
@@ -80,7 +81,7 @@ Page({
     })
     splitList = res.data.result.splitList
     this.setData({
-      rankList: res.data.result.rankList
+      rankList: sortRankList
     })
     if (!Chart){
       this.initEcharts(); //初始化图表
