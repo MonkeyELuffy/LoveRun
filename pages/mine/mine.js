@@ -10,7 +10,7 @@ Page({
     IMG_LIST,
     myMedalList: [],
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     this.getUserInfo()
   },
   getMyMedalList() {

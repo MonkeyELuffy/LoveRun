@@ -17,9 +17,9 @@
       <view class='head-item'>合计步数</view>
     </view>
     <cover-view class='rank-list-content-cover-view'>
-      <cover-view class='rank-item' wx:for='{{rankList}}' wx:for-item="item" is="rankItem">
-        <cover-view wx-if='{{item.rank > 2}}' class='rank-num'>{{item.rank + 1}}</cover-view>
-        <cover-image wx-if='{{item.rank <= 2}}' class='rank-img' src='{{rankListImg[item.rank]}}'></cover-image>
+      <cover-view class='rank-item' wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data-index='{{index}}' >
+        <cover-view wx-if='{{index > 2}}' class='rank-num'>{{index + 1}}</cover-view>
+        <cover-image wx-if='{{index <= 2}}' class='rank-img' src='{{rankListImg[index]}}'></cover-image>
         <cover-view class='table-item'>{{item.name}}</cover-view>
         <cover-view class='table-item'>{{item.people}}</cover-view>
         <cover-view class='table-item total'>{{item.steps}}步</cover-view>
