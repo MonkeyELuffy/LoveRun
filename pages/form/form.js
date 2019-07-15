@@ -8,7 +8,7 @@ Page({
   data: {
     AREA_LIST,
     index: 0,
-    areaCode: 1,
+    areaCode: 0,
     IMG_LIST,
   },
   bindPickerChange(e) {
@@ -47,6 +47,13 @@ Page({
     if (!checkPhone(formData.phone.trim())) {
       wx.showToast({
         title: '请输入电话',
+        icon: 'none',
+      })
+      return
+    }
+    if (areaCode === 0) {
+      wx.showToast({
+        title: '请选择所在区域',
         icon: 'none',
       })
       return

@@ -7,6 +7,7 @@ Page({
     showShareImg: false,
     windowWidth: '',
     windowHeight: '',
+    lock: true,
   },
   onLoad: function (options) {
     const { index, lock } = options
@@ -16,12 +17,12 @@ Page({
     })
     this.setData({
       medalDetail,
-      lock,
+      lock: lock === '1' ? true : false
     })
   },
   creatImg() {
     const { lock } = this.data
-    if (lock === 'true') {
+    if (lock) {
       return
     }
     const that = this

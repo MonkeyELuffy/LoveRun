@@ -4,7 +4,7 @@
   <view class='user-info'>
     <image class='user-info-bg' src='{{IMG_LIST.userbg}}'></image>
     <view class='user-info-head'>
-      <image src='{{userInfo.avatarUrl}}' class='user-avatar'></image>
+      <image src='{{userInfo.avatarUrl == "undefined" ? IMG_LIST.defaultAvatar : userInfo.avatarUrl}}' class='user-avatar'></image>
       <view class='user-name'>
         <view class='name'>{{userInfo.username}}</view>
         <view class='area'>{{userInfo.areaName}}</view>

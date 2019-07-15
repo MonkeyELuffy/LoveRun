@@ -13,9 +13,9 @@ Page({
   onShow: function (options) {
     this.getUserInfo()
   },
-  getMyMedalList() {
-    let { userInfo } = this.data
-    let steps = parseInt(userInfo.steps / 100000) // 每10w步一个勋章
+  getMyMedalList(userSteps) {
+    let steps = parseInt(userSteps / 100000) // 每10w步一个勋章
+    steps = steps > 7 ? 7 : steps
     for (let i = 0; i < steps; i++) {
       medalList[i].lock = false
     }
@@ -28,7 +28,7 @@ Page({
     let userInfo = res.data.result
     let newSteps = (userInfo.steps / 1000).toFixed(1)
     userInfo.newSteps = newSteps
-    let myMedalList = this.getMyMedalList()
+    let myMedalList = this.getMyMedalList(res.data.result.steps)
     this.setData({
       userInfo,
       myMedalList,
@@ -56,7 +56,7 @@ Page({
   goMedalDetail(e) {
     const index = e.currentTarget.dataset.index
     const { myMedalList } = this.data
-    const lock = myMedalList[index].lock
+    const lock = myMedalList[index].lock ? 1 : 0
     wx.navigateTo({
       url: '../medalDetail/medalDetail?index=' + index + '&lock=' + lock,
     })

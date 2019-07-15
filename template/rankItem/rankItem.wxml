@@ -4,7 +4,7 @@
       <view class='left-rank'>
         <view wx-if='{{rank > 2}}' class='rank-num'>{{rank + 1}}</view>
         <image wx-if='{{rank <= 2}}' class='rank-img' src='{{rankImg[rank]}}'></image>
-        <image src='{{avatar}}' class='avatar'></image>
+        <image src='{{avatar == "undefined" ? defaultAvatar : avatar}}' class='avatar'></image>
         <view class='name-area'>
           <view class='name'>{{name}}</view>
           <view class='area'>{{myRank.areaName}}</view>

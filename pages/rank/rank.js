@@ -9,6 +9,7 @@ Page({
     rankImg: [IMG_LIST.num1, IMG_LIST.num2, IMG_LIST.num3],
     star0: IMG_LIST.pink0,
     star1: IMG_LIST.pink1,
+    defaultAvatar: IMG_LIST.defaultAvatar,
     myRank: {
       areaName: '区域',
       name: '姓名',
@@ -20,6 +21,7 @@ Page({
     pageIndex: 1,
     pageSize: 20,
     pageCount: 1,
+    fresh: false,
   },
   onLoad: function (options) {
     this.setData({
@@ -49,14 +51,10 @@ Page({
       pageIndex: pageIndex+1,
       pageSize,
     }
-    this.requestLoadRank(data)
-  },
-  getMorePersonRankSuccess(res) {
-    const { pageIndex, rankList } = this.data
     this.setData({
-      rankList: [...rankList, ...res.data.result.data],
-      pageIndex: pageIndex+1,
+      fresh: false,
     })
+    this.requestLoadRank(data)
   },
   loadRank() {
     const { pageSize, canLoad } = this.data
@@ -67,6 +65,9 @@ Page({
       pageIndex: 1,
       pageSize,
     }
+    this.setData({
+      fresh: true,
+    })
     this.requestLoadRank(data)
   },
   requestLoadRank(data) {
@@ -89,10 +90,13 @@ Page({
     }, 1000)
   },
   getPersonRankSuccess(res) {
+    let { rankList, fresh, pageIndex } = this.data
+    const newRankList = fresh ? res.data.result.data : [...rankList, ...res.data.result.data]
+    const newPageIndex = fresh ? 1 : pageIndex + 1
     this.setData({
-      rankList: res.data.result.data,
+      rankList: newRankList,
       pageCount: res.data.result.pageCount,
-      pageIndex: 1,
+      pageIndex: newPageIndex,
     })
   },
   getPersonRankFail() {

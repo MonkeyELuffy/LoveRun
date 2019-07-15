@@ -5,7 +5,7 @@
     <view class='rank-item'>
     <view class='rank'>
       <view class='left-rank'>
-        <image src='{{myRank.avatar}}' class='avatar'></image>
+        <image src='{{myRank.avatar == "undefined" ? defaultAvatar: myRank.avatar}}' class='avatar'></image>
         <view class='name-area'>
           <view class='name'>{{myRank.name}}</view>
           <view class='area'>{{myRank.areaName}}排名第<span class='rank-num-span'>{{myRank.rank + 1}}</span>名</view>
@@ -23,7 +23,7 @@
   </view>
   <view class='rank-list'>
     <scroll-view class='rank-list-content' scroll-y bindscrolltolower="loadMoreRank" bindscrolltoupper="loadRank">
-      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data-index='{{index}}' data="{{...item, rankImg, star0, star1, likeStep, myRank, index}}"></template>
+      <template wx:for='{{rankList}}' wx:for-item="item" is="rankItem" data-index='{{index}}' data="{{...item, rankImg, star0, star1, likeStep, myRank, index, defaultAvatar}}"></template>
     </scroll-view>
   </view>
 </view>
