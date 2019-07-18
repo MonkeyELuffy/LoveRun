@@ -28,8 +28,8 @@ ec-canvas {
   width: 85%;
   position: absolute;
   z-index: 1000;
+  right: 4.8%;
   bottom: 20rpx;
-  /* right: 20rpx; */
   background-color: #fff;
   border-radius: 10rpx;
   padding: 20rpx 20rpx 0 20rpx;
@@ -87,6 +87,24 @@ ec-canvas {
 .rank-num {
   font-size: 28rpx;
   color: #666;
-  width: 30rpx;
+  width: 34rpx;
   text-align: center;
+}
+.rank-switch-content {
+  position: absolute;
+  z-index: 1000;
+  right: 4.8%;
+  bottom: 300rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+.switch-active {
+  color: #E31918;
+}
+.switch-item {
+  display: inline;
+}
+.line {
+  padding: 0 10rpx;
 }

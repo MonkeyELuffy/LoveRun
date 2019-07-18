@@ -5,7 +5,7 @@
   <form bindsubmit="formSubmit">
     <view class='form-item'>
       <image class='icon' src='{{IMG_LIST.name}}'></image>
-      <input class='form-input' name='name' placeholder='姓名' placeholder-style='color: #FF9A9A;font-size: 24rpx;'></input>
+      <input class='form-input' name='name' placeholder='用户名' placeholder-style='color: #FF9A9A;font-size: 24rpx;'></input>
     </view>
     <view class='form-item'>
       <image class='icon' src='{{IMG_LIST.phone}}'></image>

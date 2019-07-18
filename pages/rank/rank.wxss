@@ -11,8 +11,7 @@ page {
   width: 100vw;
 }
 .rank-list {
-  margin-top: 20rpx;
-  height: 86vh;
+  height: 80vh;
 }
 .rank-list-content {
   height: 100%;
@@ -48,4 +47,20 @@ page {
 }
 .my-rank .star-num {
   color: #ddd;
+}
+
+.switch-rank-type {
+  background-color: #fff;
+  display: flex;
+  font-size: 32rpx;
+  color: #333;
+  padding: 20rpx 0;
+  margin: 4rpx 0;
+}
+.switch-item {
+  width: 100%;
+  text-align: center;
+}
+.switch-item.active {
+  color: #D70F0E;
 }

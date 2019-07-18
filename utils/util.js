@@ -137,6 +137,32 @@ const setSplitList = (splitList) => {
   splitList[4].label = `大于${labelUnit * 4}${unit}`
 
   return splitList
+  // const defaultSplitList = [
+  //   {
+  //     end: 20000000,
+  //     label: '小于2000w',
+  //   },
+  //   {
+  //     end: 40000000,
+  //     start: 20000000,
+  //     label: '2000w到4000w',
+  //   },
+  //   {
+  //     end: 60000000,
+  //     start: 40000000,
+  //     label: '4000w到6000w',
+  //   },
+  //   {
+  //     end: 60000000,
+  //     start: 80000000,
+  //     label: '6000w到8000w',
+  //   },
+  //   {
+  //     start: 80000000,
+  //     label: '大于8000w',
+  //   },
+  // ]
+  // return defaultSplitList
 }
 
 module.exports = {

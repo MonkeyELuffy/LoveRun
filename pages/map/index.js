@@ -16,12 +16,15 @@ Page({
     }
   },
   data: {
+    currentListType: '总',
     IMG_LIST,
     rankListImg: [IMG_LIST.num1, IMG_LIST.num2, IMG_LIST.num3],
     ec: {
       lazyLoad: true, // 延迟加载
     },
     rankList: [],
+    rankListSortBySteps: [],
+    rankListSortBySum: [],
     nowDate: '',
   },
   handleSuccess(res) {
@@ -49,6 +52,13 @@ Page({
     this.getRankList()
     this.stepLoad()
   },
+  switchListType() {
+    let { currentListType } = this.data
+    currentListType = currentListType === '日' ? '总' : '日'
+    this.setData({
+      currentListType,
+    })
+  },
   stepLoad() {
     const that = this
     wx.getWeRunData({
@@ -71,9 +81,26 @@ Page({
       nowDate: nowDateStr
     })
   },
+  getRankListSortBySteps(rankList) {
+    let copyList = []
+    rankList.map(item => {
+      copyList.push(item)
+    })
+    const rankListSortBySteps = copyList.sort((a, b) => b.steps - a.steps )
+    return rankListSortBySteps
+  },
+  getRankListSortBySum(rankList) {
+    let copyList = []
+    rankList.map(item => {
+      copyList.push(item)
+    })
+    const rankListSortBySum = copyList.sort((a, b) => b.sum - a.sum)
+    return rankListSortBySum
+  },
   getRankListSuccess(res) {
     rankList = []
-    const sortRankList = res.data.result.rankList.sort((a, b) => b.steps - a.steps )
+    const rankListSortBySum = this.getRankListSortBySum(res.data.result.rankList)
+    const rankListSortBySteps = this.getRankListSortBySteps(res.data.result.rankList)
     res.data.result.rankList.map(item => {
       if (item) {
         rankList.push({name: item.name, value: item.sum})
@@ -81,7 +108,9 @@ Page({
     })
     splitList = res.data.result.splitList
     this.setData({
-      rankList: sortRankList
+      rankList: rankListSortBySteps,
+      rankListSortBySteps,
+      rankListSortBySum,
     })
     if (!Chart){
       this.initEcharts(); //初始化图表
@@ -122,13 +151,13 @@ Page({
     let option = {
       dataRange: {
         left: 'right',
-        top: 60,
+        top: 50,
         splitList: newSplitList, 
         textStyle: {
           color: '#af271d',
           fontSize: 12,
         },
-        color: ['#ff271d', '#f5cecd']
+        color: ['#ff271d', '#d5cecd']
       },
       tooltip: {
         formatter: "{b} : {c}",
@@ -141,7 +170,7 @@ Page({
           min: 1.3,
           max: 1.3,
         },
-        center: [103.97, 30.62],
+        center: [103.97, 30.54],
         roam: false,  //地图拖动
         type: 'map',
         mapType: 'henan',

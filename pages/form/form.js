@@ -39,7 +39,7 @@ Page({
     let formData = e.detail.value
     if (!formData.name.trim()) {
       wx.showToast({
-        title: '请输入姓名',
+        title: '请输入用户名',
         icon: 'none',
       })
       return

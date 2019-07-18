@@ -7,7 +7,7 @@
         <image src='{{avatar == "undefined" ? defaultAvatar : avatar}}' class='avatar'></image>
         <view class='name-area'>
           <view class='name'>{{name}}</view>
-          <view class='area'>{{myRank.areaName}}</view>
+          <view class='area'>{{areaName || myRank.areaName}}</view>
         </view>
       </view>
       <view class='right-rank'>

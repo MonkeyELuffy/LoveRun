@@ -21,15 +21,18 @@ Page({
     pageIndex: 1,
     pageSize: 20,
     pageCount: 1,
-    fresh: false,
+    freshData: false,
+    rankType: 0, // 0:area 1: total
+    maxPage: 5,
   },
   onLoad: function (options) {
     this.setData({
       canLoad: true,
       rankList: [],
+    }, () => {
+      this.getUserRank()
+      this.loadRank()
     })
-    this.getUserRank()
-    this.loadRank()
   },
   getUserRank() {
     request('GET', urlList.getUserRank, {}, app.globalData.openId, this.getUserRankSuccess, this.getUserRankFail)
@@ -43,34 +46,44 @@ Page({
 
   },
   loadMoreRank() {
-    const { pageIndex, pageSize, pageCount, canLoad } = this.data
+    const { pageIndex, pageSize, pageCount, canLoad, rankType } = this.data
     if (pageIndex === pageCount || !canLoad) {
       return
     }
     const data = {
       pageIndex: pageIndex+1,
       pageSize,
+      type: rankType,
     }
     this.setData({
-      fresh: false,
+      freshData: false,
+    }, () => {
+      this.requestLoadRank(data)
     })
-    this.requestLoadRank(data)
   },
   loadRank() {
-    const { pageSize, canLoad } = this.data
+    const { pageSize, canLoad, rankType } = this.data
     if (!canLoad) {
       return
     }
     const data = {
       pageIndex: 1,
       pageSize,
+      type: rankType,
     }
     this.setData({
-      fresh: true,
+      freshData: true,
+    }, () => {
+      this.requestLoadRank(data)
     })
-    this.requestLoadRank(data)
   },
   requestLoadRank(data) {
+    const { pageIndex, rankType, maxPage, freshData }  = this.data
+
+    // 总排行最多请求到第五页，即前一百名
+    if (pageIndex === maxPage && rankType === 1 && !freshData) {
+      return
+    }
     const that =  this
     that.setData({
       canLoad: false
@@ -90,9 +103,9 @@ Page({
     }, 1000)
   },
   getPersonRankSuccess(res) {
-    let { rankList, fresh, pageIndex } = this.data
-    const newRankList = fresh ? res.data.result.data : [...rankList, ...res.data.result.data]
-    const newPageIndex = fresh ? 1 : pageIndex + 1
+    let { rankList, freshData, pageIndex } = this.data
+    const newRankList = freshData ? res.data.result.data : [...rankList, ...res.data.result.data]
+    const newPageIndex = freshData ? 1 : pageIndex + 1
     this.setData({
       rankList: newRankList,
       pageCount: res.data.result.pageCount,
@@ -114,5 +127,30 @@ Page({
     this.setData({
       rankList,
     })
-  }
+  },
+  switchToArea() {
+    this.switchRankType(0)
+  },
+  switchToTotal() {
+    this.switchRankType(1)
+  },
+  switchRankType(currentType) {
+    const { pageSize, rankType } = this.data
+    if (rankType === currentType) {
+      return
+    }
+    const data = {
+      pageIndex: 1,
+      pageSize,
+      type: currentType,
+    }
+    this.setData({
+      pageIndex: 1,
+      canLoad: true,
+      freshData: true,
+      rankType: currentType,
+    }, () => {
+      this.requestLoadRank(data)
+    })
+  },
 })

@@ -3,23 +3,27 @@
 <view class='content'>
   <view class='my-rank'>
     <view class='rank-item'>
-    <view class='rank'>
-      <view class='left-rank'>
-        <image src='{{myRank.avatar == "undefined" ? defaultAvatar: myRank.avatar}}' class='avatar'></image>
-        <view class='name-area'>
-          <view class='name'>{{myRank.name}}</view>
-          <view class='area'>{{myRank.areaName}}排名第<span class='rank-num-span'>{{myRank.rank + 1}}</span>名</view>
+      <view class='rank'>
+        <view class='left-rank'>
+          <image src='{{myRank.avatar == "undefined" ? defaultAvatar: myRank.avatar}}' class='avatar'></image>
+          <view class='name-area'>
+            <view class='name'>{{myRank.name}}</view>
+            <view class='area'>{{rankType === 0 ? myRank.areaName : "总区域"}}排名第<span class='rank-num-span'>{{rankType === 0 ? (myRank.rank + 1) : (myRank.totalRank + 1)}}</span>名</view>
+          </view>
         </view>
-      </view>
-      <view class='right-rank'>
-        <view class='steps'>{{myRank.steps}}</view>
-        <view class='star'>
-          <view class='star-num'>{{myRank.likes}}</view>
-          <image src='{{star1}}' class='star-img'></image>
+        <view class='right-rank'>
+          <view class='steps'>{{myRank.steps}}</view>
+          <view class='star'>
+            <view class='star-num'>{{myRank.likes}}</view>
+            <image src='{{star1}}' class='star-img'></image>
+          </view>
         </view>
       </view>
     </view>
   </view>
+  <view class='switch-rank-type'>
+    <view class='switch-item {{rankType === 0 ? "active" : ""}}' bindtap='switchToArea'>区排行</view>
+    <view class='switch-item {{rankType === 1 ? "active" : ""}}' bindtap='switchToTotal'>总排行</view>
   </view>
   <view class='rank-list'>
     <scroll-view class='rank-list-content' scroll-y bindscrolltolower="loadMoreRank" bindscrolltoupper="loadRank">
