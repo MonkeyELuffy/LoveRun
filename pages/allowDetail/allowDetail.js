@@ -12,16 +12,11 @@ Page({
     wx.getUserInfo({ //获取用户的授权信息
       success: res => {
         app.globalData.userInfo = res.userInfo
-        this.userLogin(res.userInfo.avatarUrl)
-        if (app.globalData.isExist) {
-          wx.switchTab({
-            url: '../map/index'
-          })
-        } else {
-          wx.navigateTo({
-            url: '../form/form',
-          })
-        }
+        wx.login({
+          success: res => {
+            this.getOpenid(res.code)
+          }
+        })
         console.log("获取信息", res)
       },
       fail: res => {
@@ -29,12 +24,28 @@ Page({
       }
     })
   },
-  //将用户登录信息同步到后台
-  userLogin(avatarUrl) {
-    const data = {
-      avatarUrl,
-      openId: app.globalData.openId,
+  // 获取Openid
+  getOpenid(code) {
+    request('POST', urlList.getOpenId, { code }, app.globalData.openId, this.handleSuccess, this.handleFail)
+  },
+  handleSuccess(res) {
+    if (res.data.code == 0) {
+      app.globalData.openId = res.data.result.openId
+      app.globalData.isExist = res.data.result.isExist
+      if (res.data.result.isExist) {
+        wx.switchTab({
+          url: '../map/index'
+        })
+      } else {
+        wx.navigateTo({
+          url: '../form/form',
+        })
+      }
+    } else {
+      console.log('get openid失败', res.data)
     }
-    request('POST', urlList.upUserInfo, data, app.globalData.openId)
+  },
+  handleFail(err) {
+    console.log('getOpenid err')
   },
 })
