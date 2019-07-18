@@ -28,6 +28,10 @@ Page({
         url: '../map/index',
       })
     } else {
+      wx.showModal({
+        title: '温馨提示',
+        content: res.data.msg,
+      })
       console.log('失败', res.data)
     }
   },
