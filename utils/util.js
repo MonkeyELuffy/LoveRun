@@ -119,50 +119,25 @@ const creatShareImg = (that, text1, text2) => {
 }
 
 const setSplitList = (splitList) => {
-  const minUnit = splitList[0].end
-  let labelUnit = minUnit
-  let unit = ''
-  if (minUnit.toString().length >= 6 && minUnit.toString().length<= 8) {
-    labelUnit = minUnit / 10000
-    unit = '万'
-  }
-  if (minUnit.toString().length > 8) {
-    labelUnit = minUnit / 100000000
-    unit = '亿'
-  }
-  splitList[0].label = `小于${labelUnit}${unit}`
-  splitList[1].label = `${labelUnit}${unit}到${labelUnit * 2}${unit}`
-  splitList[2].label = `${labelUnit * 2}${unit}到${labelUnit * 3}${unit}`
-  splitList[3].label = `${labelUnit * 3}${unit}到${labelUnit * 4}${unit}`
-  splitList[4].label = `大于${labelUnit * 4}${unit}`
+  splitList[0].label = `小于` + getSplitItemNum(splitList[0].end)
+  splitList[1].label = getSplitItemNum(splitList[1].start) + `到` + getSplitItemNum(splitList[1].end)
+  splitList[2].label = getSplitItemNum(splitList[2].start) + `到` + getSplitItemNum(splitList[2].end)
+  splitList[3].label = getSplitItemNum(splitList[3].start) + `到` + getSplitItemNum(splitList[3].end)
+  splitList[4].label = `大于` + getSplitItemNum(splitList[4].start)
 
   return splitList
-  // const defaultSplitList = [
-  //   {
-  //     end: 20000000,
-  //     label: '小于2000w',
-  //   },
-  //   {
-  //     end: 40000000,
-  //     start: 20000000,
-  //     label: '2000w到4000w',
-  //   },
-  //   {
-  //     end: 60000000,
-  //     start: 40000000,
-  //     label: '4000w到6000w',
-  //   },
-  //   {
-  //     end: 60000000,
-  //     start: 80000000,
-  //     label: '6000w到8000w',
-  //   },
-  //   {
-  //     start: 80000000,
-  //     label: '大于8000w',
-  //   },
-  // ]
-  // return defaultSplitList
+}
+
+const getSplitItemNum = (splitNum) => {
+  let splitItemNum = splitNum
+  let unit = ''
+
+  if (splitNum.toString().length >= 5 && splitNum.toString().length<= 8) {
+    splitItemNum = splitNum / 10000
+    unit = '万'
+  }
+  const splitItemNumText = splitItemNum + '' + unit
+  return splitItemNumText
 }
 
 module.exports = {
