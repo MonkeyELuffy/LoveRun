@@ -71,4 +71,5 @@
 }
 .saveImg.show-img {
   bottom: 70rpx;
+  z-index: 1;
 }

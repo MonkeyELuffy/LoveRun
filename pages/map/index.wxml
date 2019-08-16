@@ -1,6 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <ec-canvas id="mychart" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
+  <canvas canvas-id="shareCanvas" class='share-img' style="top: {{showShareImg ? '0rpx' : '-10000rpx'}}" bindtap='hiddenImg'></canvas>
+  <cover-view class='inedx-save-img saveImg {{showShareImg ? "active" : ""}}' bindtap='saveImg'>保存图片</cover-view>
+
+  <ec-canvas id="mychart" canvas-id="mychart-area" ec="{{ ec }}" style="display:{{showShareImg ? 'none' : 'show'}}"></ec-canvas>
   <cover-view class='map-title'>
     <cover-image class='map-title-bg' src='{{IMG_LIST.mapTitle}}'></cover-image>
     <cover-view class='title'>党员活动热力图</cover-view>

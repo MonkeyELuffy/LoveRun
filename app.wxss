@@ -22,10 +22,12 @@ page {
   position: fixed; 
   background-color: rgba(200, 200, 200, .6);
   animation: all .3s ease;
+  z-index: 1111;
 }
 .saveImg {
   width: 60vw;
   margin: 20rpx 20vw;
+  z-index: 1111;
   height: 70rpx;
   line-height: 70rpx;
   position: fixed;
@@ -39,5 +41,9 @@ page {
 }
 .saveImg.active {
   bottom: 70rpx;
-  z-index: 111;
+  z-index: 1111;
+}
+.inedx-save-img {
+  margin: 0;
+  background-color: #F76B1C !important;
 }

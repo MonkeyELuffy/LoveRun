@@ -42,14 +42,14 @@ const request = (method, url, data, openId, success, fail, complete) => {
   })
 }
 
-const saveShareImg = (that, windowWidth, windowHeight) => {
+const saveShareImg = (that, windowWidth, windowHeight, callBack) => {
   wx.canvasToTempFilePath({
     x: 50,
     y: 50,
     width: windowWidth - 50 * 2,
-    height: windowHeight - 90 * 2,
+    height: windowHeight - 70 * 2,
     destWidth: (windowWidth - 50) * 2,
-    destHeight: (windowHeight - 90) * 2,
+    destHeight: (windowHeight - 70) * 2,
     canvasId: 'shareCanvas',
     success(res) {
       wx.saveImageToPhotosAlbum({
@@ -65,11 +65,52 @@ const saveShareImg = (that, windowWidth, windowHeight) => {
               if (res.confirm) {
                 that.setData({
                   showShareImg: false,
-                })
+                }, () => callBack && callBack())
               }
             }
           })
         }
+      })
+    }
+  })
+}
+
+const creatIndexShareImg = (that, textList) => {
+  wx.getSystemInfo({
+    success(res) {
+      wx.hideLoading()
+      const windowWidth = res.windowWidth
+      const windowHeight = res.windowHeight
+      const ctx = wx.createCanvasContext('shareCanvas')
+      ctx.drawImage(IMG_LIST.formBg, 50, 50, windowWidth - 50 * 2, windowHeight - 70 * 2)
+      ctx.setTextAlign('center')
+      ctx.setFillStyle('#ea5d4f')
+      ctx.setFontSize(windowWidth / 20 - 8)
+      ctx.fillText(textList[0], windowWidth / 2, windowHeight * 2 / 5 + 46)
+      ctx.setTextAlign('center')
+      ctx.setFillStyle('#ea5d4f')
+      ctx.setFontSize(windowWidth / 20 - 4)
+      ctx.fillText(textList[1], windowWidth / 2, windowHeight * 2 / 5 + 62)
+      ctx.setTextAlign('center')
+      ctx.setFillStyle('#ea5d4f')
+      ctx.setFontSize(windowWidth / 20 - 8)
+      ctx.fillText(textList[2], windowWidth / 2, windowHeight * 2 / 5 + 92)
+      ctx.setTextAlign('center')
+      ctx.setFillStyle('#ea5d4f')
+      ctx.setFontSize(windowWidth / 20 - 4)
+      ctx.fillText(textList[3], windowWidth / 2, windowHeight * 2 / 5 + 108)
+      var cx = windowWidth * 3 / 8 + windowWidth / 8;
+      var cy = windowHeight * 11 / 18 + 20 + windowWidth / 8;
+      ctx.beginPath();
+      ctx.arc(cx, cy, windowWidth / 8, 0, 2 * Math.PI);
+      ctx.clip();
+
+      ctx.drawImage(IMG_LIST.wxcode, windowWidth * 3 / 8, windowHeight * 11 / 18 + 20, windowWidth / 4, windowWidth / 4)
+      ctx.draw()
+      that.setData({
+        showShareImg: true,
+        windowWidth,
+        windowHeight,
       })
     }
   })
@@ -88,7 +129,7 @@ const creatShareImg = (that, text1, text2) => {
       const windowWidth = res.windowWidth
       const windowHeight = res.windowHeight
       const ctx = wx.createCanvasContext('shareCanvas')
-      ctx.drawImage(IMG_LIST.formBg, 50, 50, windowWidth - 50 * 2, windowHeight - 90 * 2)
+      ctx.drawImage(IMG_LIST.formBg, 50, 50, windowWidth - 50 * 2, windowHeight - 70 * 2)
       ctx.setTextAlign('center')
       ctx.setFillStyle('#ea5d4f')
       ctx.setFontSize(windowWidth / 20 - 4)
@@ -102,12 +143,12 @@ const creatShareImg = (that, text1, text2) => {
       ctx.setFontSize(windowWidth / 20 - 4)
       ctx.fillText('快来扫码参加', windowWidth / 2, windowHeight / 2 + windowWidth / 20 + 16)
       var cx = windowWidth * 3 / 8 + windowWidth / 8;
-      var cy = windowHeight * 11 / 18 + windowWidth / 8;
+      var cy = windowHeight * 11 / 18 + 20 + windowWidth / 8;
       ctx.beginPath();
       ctx.arc(cx, cy, windowWidth / 8, 0, 2 * Math.PI);
       ctx.clip();
 
-      ctx.drawImage(IMG_LIST.wxcode, windowWidth * 3 / 8, windowHeight * 11 / 18, windowWidth / 4, windowWidth / 4)
+      ctx.drawImage(IMG_LIST.wxcode, windowWidth * 3 / 8, windowHeight * 11 / 18 + 20, windowWidth / 4, windowWidth / 4)
       ctx.draw()
       that.setData({
         showShareImg: true,
@@ -147,4 +188,5 @@ module.exports = {
   saveShareImg,
   creatShareImg,
   setSplitList,
+  creatIndexShareImg,
 }

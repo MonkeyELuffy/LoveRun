@@ -1,6 +1,6 @@
 import * as echarts from '../../ec-canvas/echarts'
 import geoJson from './mapData.js'
-import { request, setSplitList } from "../../utils/util.js"
+import { request, setSplitList, saveShareImg, creatIndexShareImg } from "../../utils/util.js"
 import { urlList } from "../../asset/urlList.js"
 import { IMG_LIST } from "../../asset/imgList.js"
 const app = getApp()
@@ -26,13 +26,21 @@ Page({
     rankListSortBySteps: [],
     rankListSortBySum: [],
     nowDate: '',
+    showShareImg: false,
   },
   handleSuccess(res) {
     if (res.data.code == 0) {
       wx.showToast({
         title: '上传步数成功',
       })
-      this.getRankList() // 上传本人步数之后需要更新首页排行
+      const that = this
+      setTimeout(() => {
+        that.setData({
+          showShareImg: true
+        }, () => {
+          that.getRankList() // 上传本人步数之后需要更新首页排行
+        })
+      }, 1000);
     } else {
       wx.showToast({
         title: '上传步数失败',
@@ -98,6 +106,7 @@ Page({
     return rankListSortBySum
   },
   getRankListSuccess(res) {
+    const { showShareImg } = this.data
     rankList = []
     const rankListSortBySum = this.getRankListSortBySum(res.data.result.rankList)
     const rankListSortBySteps = this.getRankListSortBySteps(res.data.result.rankList)
@@ -117,6 +126,40 @@ Page({
     }else{
       this.setOption(Chart); //更新数据
     }
+    if (showShareImg) {
+      this.handleShowShareImg()
+    }
+  },
+  handleShowShareImg() {
+    const { totalSteps, totalChangZheng } = this.getTotalSteps()
+    const that = this
+    const textList = [
+      '成都市全市党员',
+      '目前已完成总步数' + totalSteps + '步',
+      '相当于完成了',
+      '' + totalChangZheng + '个“二万五千里长征”',
+    ]
+    creatIndexShareImg(that, textList)
+  },
+  getTotalSteps() {
+    const { rankList } = this.data
+    let totalSteps = 0
+    rankList.map(item => totalSteps += item.sum)
+    const totalLi = (totalSteps * 0.7).toFixed(0)
+    const totalChangZheng = (totalLi / (1000 * 25000)).toFixed(1)
+    return { totalSteps, totalLi, totalChangZheng }
+  },
+  saveImg() {
+    const that = this
+    const { windowWidth, windowHeight } = this.data
+    saveShareImg(that, windowWidth, windowHeight, that.getRankList)
+  },
+  hiddenImg() {
+    this.setData({
+      showShareImg: false,
+    }, () => {
+      this.getRankList()
+    })
   },
   getRankListFail() {
     wx.showModal({
